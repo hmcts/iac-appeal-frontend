@@ -1,0 +1,8 @@
+{
+  "node": {
+    "port": "PORT"
+  },
+  "appInsights": {
+    "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
+  }
+}
