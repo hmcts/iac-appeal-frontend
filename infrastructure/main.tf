@@ -2,7 +2,7 @@ locals {
   aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
 }
 
-module "iac-apfr" {
+module "ia-apfr" {
   source               = "git@github.com:contino/moj-module-webapp?ref=master"
   product              = "${var.product}-${var.component}"
   location             = "${var.location}"

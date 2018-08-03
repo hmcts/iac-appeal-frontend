@@ -1,13 +1,13 @@
 #!groovy
 properties(
-        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/iac-appeal-frontend'],
+        [[$class: 'GithubProjectProperty', projectUrlStr: 'https://github.com/hmcts/ia-appeal-frontend'],
          pipelineTriggers([[$class: 'GitHubPushTrigger']])]
 )
 
 @Library("Infrastructure")
 
-def product = "iac-appeal"
-def component = "frontend"
+def product = "ia"
+def component = "appeal-frontend"
 
 withPipeline("nodejs", product, component) {
   after('build') {sh 'yarn build'}

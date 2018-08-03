@@ -27,7 +27,7 @@ variable "subscription" {
 variable "ilbIp"{}
 
 variable "additional_hostname" {
-  default = "iac-apfr.sandbox.platform.hmcts.net"
+  default = "ia-apfr.sandbox.platform.hmcts.net"
 }
 
 variable "common_tags" {

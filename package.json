@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hmcts/iac-appeal-frontend.git"
+    "url": "https://github.com/hmcts/ia-appeal-frontend.git"
   },
   "dependencies": {
     "@hmcts/nodejs-healthcheck": "^1.4.5",

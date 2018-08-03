@@ -1,2 +1,2 @@
 infrastructure_env = "preprod"
-additional_hostname = "iac-apfr.nonprod.platform.hmcts.net"
+additional_hostname = "ia-apfr.nonprod.platform.hmcts.net"
