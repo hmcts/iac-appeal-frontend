@@ -4,5 +4,4 @@ yarn-error.log
 public
 mochawesome-report
 test/coverage
-test/functional/output
-test/smoke/output
+test/e2e/output

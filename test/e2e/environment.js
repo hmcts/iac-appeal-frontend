@@ -10,6 +10,13 @@ const port = config.get('node.port');
 let browser;
 let server;
 
+function startAppServer() {
+  if (!server && testUrl.indexOf('localhost') !== -1) {
+    console.log(`Starting server on port ${port}`);
+    server = createServer(setup({disableAppInsights: true})).listen(port);
+  }
+}
+
 async function startBrowser() {
   if (!browser) {
     console.log('Starting browser');
@@ -26,15 +33,7 @@ async function startBrowser() {
   }
 }
 
-function startAppServer() {
-  if (!server && testUrl.indexOf('localhost') !== -1) {
-    console.log(`Starting server on port ${port}`);
-    server = createServer(setup({disableAppInsights: true})).listen(port);
-  }
-}
-
-async function startServices() {
-  startAppServer();
+async function launchBrowser() {
   await startBrowser();
   const page = await browser.newPage();
   await page.setViewport({
@@ -55,4 +54,4 @@ after(async () => {
   }
 });
 
-module.exports = {startServices};
+module.exports = {startAppServer, launchBrowser};

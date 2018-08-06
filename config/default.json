@@ -13,12 +13,5 @@
       "sha256s": "AbCdEf123=",
       "sha256sBackup": "ZyXwVu456="
     }
-  },
-  "test": {
-    "url": "http://localhost:3000",
-    "functionalOutputDir": "test/functional/output",
-    "smokeOutputDir": "output",
-    "waitForTimeout": 1000,
-    "waitForAction": 500
   }
 }

@@ -15,10 +15,7 @@
     }
   },
   "test": {
-    "url": "TEST_URL",
-    "functionalOutputDir": "TEST_FUNCTIONAL_OUTPUT_DIR",
-    "smokeOutputDir": "TEST_SMOKE_OUTPUT_DIR",
-    "waitForTimeout": "TEST_WAIT_FOR_TIMEOUT_VALUE",
-    "waitForAction": "TEST_WAIT_FOR_ACTION_VALUE"
+    "outputDir": "TEST_OUTPUT_DIR",
+    "url": "TEST_URL"
   }
 }
