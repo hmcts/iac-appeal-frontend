@@ -2,4 +2,7 @@
 node_modules
 yarn-error.log
 public
+mochawesome-report
 test/coverage
+test/functional/output
+test/smoke/output

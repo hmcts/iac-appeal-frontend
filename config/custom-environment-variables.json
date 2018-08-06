@@ -1,8 +1,24 @@
 {
-  "node": {
-    "port": "PORT"
-  },
   "appInsights": {
     "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
+  },
+  "node": {
+    "protocol": "HTTP_PROTOCOL",
+    "hostname": "EXTERNAL_HOSTNAME",
+    "port": "PORT"
+  },
+  "ssl": {
+    "hpkp": {
+      "maxAge": "HPKP_MAXAGE",
+      "sha256s": "HPKP_SHA256",
+      "sha256sBackup": "HPKP_SHA256_BACKUP"
+    }
+  },
+  "test": {
+    "url": "TEST_URL",
+    "functionalOutputDir": "TEST_FUNCTIONAL_OUTPUT_DIR",
+    "smokeOutputDir": "TEST_SMOKE_OUTPUT_DIR",
+    "waitForTimeout": "TEST_WAIT_FOR_TIMEOUT_VALUE",
+    "waitForAction": "TEST_WAIT_FOR_ACTION_VALUE"
   }
 }

@@ -28,6 +28,18 @@ These commands will download any required dependencies, and start a webserver li
 
 ### Using the application
 
+To understand if the application is working, you can call it's health endpoint:
+
+```
+curl http://localhost:3000/health
+```
+
+If the API is running, you should see this response:
+
+```
+{"status":"UP"}
+```
+
 Right now only the Hello World endpoint exists:
 
 ```
@@ -36,9 +48,20 @@ curl http://localhost:3000/hello-world
 
 ### Running verification tests:
 
-You can run the tests as follows:
+You can run the *unit* and *functional* tests as follows:
 
 ```
 yarn test
+```
+
+You can run the *smoke* against a _running instance_ as follows:
+
+```
+yarn test:smoke
+```
+
+You can run the security check as follows:
+
+```
 yarn test:nsp
 ```

@@ -15,7 +15,7 @@ module "ia-apfr" {
   common_tags          = "${var.common_tags}"
 
   app_settings = {
-    WEBSITE_NODE_DEFAULT_VERSION = "8.11.3"
+    WEBSITE_NODE_DEFAULT_VERSION = "8.11.1"
     NODE_ENV                     = "${var.infrastructure_env}"
   }
 }

@@ -12,11 +12,13 @@
     "build": "yarn build-sass && yarn copy-assets",
     "build-sass": "node-sass app/assets/sass/application.scss public/css/main.css --output-style compressed",
     "copy-assets": "cp -R ./node_modules/govuk-frontend/assets ./public/govuk-frontend",
-    "test": "cross-env NODE_PATH=. NODE_ENV=test mocha test/unit --recursive",
+    "test": "yarn test:unit && yarn test:functional",
+    "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha test/unit --recursive",
+    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test mocha test/functional/browser --recursive --timeout=5000",
+    "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/smoke/ --steps",
     "test:coverage": "cross-env NODE_PATH=. istanbul cover _mocha test/unit/** --dir test/coverage/html",
     "test:a11y": "exit 0",
     "test:nsp": "nsp check",
-    "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test codeceptjs run -c test/smoke/ --steps",
     "sonar-scan": "sonar-scanner",
     "lint": "eslint ."
   },
@@ -48,12 +50,18 @@
     "@hmcts/eslint-config": "^1.4.0",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
+    "codeceptjs": "^1.1.5",
     "eslint": "^4.19.1",
-    "mocha": "^3.2.0",
+    "mocha": "^5.1.1",
     "mocha-jenkins-reporter": "^0.3.8",
+    "mocha-multi": "^1.0.1",
+    "mochawesome": "^3.0.2",
     "node-dev": "^3.1.3",
+    "pa11y": "^4.13.0",
+    "puppeteer": "^1.4.0",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.9.0",
-    "sonar-scanner": "^3.0.3"
+    "sonar-scanner": "^3.0.3",
+    "supertest": "^3.0.0"
   }
 }
