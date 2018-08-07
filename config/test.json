@@ -1,0 +1,6 @@
+{
+  "test": {
+    "outputDir": "test/e2e/output",
+    "url": "http://localhost:3000"
+  }
+}

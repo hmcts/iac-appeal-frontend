@@ -1,0 +1,66 @@
+{
+  "name": "ia-appeal-frontend",
+  "description": "Immigration & Asylum appeal frontend",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=8.9.0 <9.0"
+  },
+  "scripts": {
+    "start": "cross-env NODE_PATH=. node server.js",
+    "dev": "yarn build && cross-env NODE_PATH=. node-dev server.js",
+    "build": "yarn build-sass && yarn copy-assets",
+    "build-sass": "node-sass app/assets/sass/application.scss public/css/main.css --output-style compressed",
+    "copy-assets": "cp -R ./node_modules/govuk-frontend/assets ./public/govuk-frontend",
+    "test": "yarn test:unit && yarn test:functional",
+    "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha test/unit --recursive",
+    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test mocha test/e2e/functional --recursive --timeout=5000",
+    "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test mocha test/e2e/smoke --recursive --timeout=5000",
+    "test:coverage": "cross-env NODE_PATH=. istanbul cover _mocha test/unit/** --dir test/coverage/html",
+    "test:a11y": "exit 0",
+    "test:nsp": "nsp check",
+    "sonar-scan": "sonar-scanner",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hmcts/ia-appeal-frontend.git"
+  },
+  "dependencies": {
+    "@hmcts/nodejs-healthcheck": "^1.4.5",
+    "@hmcts/nodejs-logging": "^3.0.0",
+    "applicationinsights": "^1.0.1",
+    "body-parser": "^1.17.1",
+    "config": "^1.30.0",
+    "cross-env": "^4.0.0",
+    "express": "^4.15.2",
+    "govuk-frontend": "^1.2.0",
+    "helmet": "^3.10.0",
+    "http-status-codes": "^1.1.6",
+    "istanbul": "^0.4.5",
+    "joi": "^13.0.1",
+    "lodash": "^4.17.10",
+    "moment": "^2.18.1",
+    "node-sass": "4.5.3",
+    "nsp": "^3.2.1",
+    "nunjucks": "^3.0.0",
+    "serve-favicon": "^2.4.2"
+  },
+  "devDependencies": {
+    "@hmcts/eslint-config": "^1.4.0",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "eslint": "^4.19.1",
+    "mocha": "^5.1.1",
+    "mocha-jenkins-reporter": "^0.3.8",
+    "mocha-multi": "^1.0.1",
+    "mochawesome": "^3.0.2",
+    "node-dev": "^3.1.3",
+    "pa11y": "^4.13.0",
+    "puppeteer": "^1.4.0",
+    "sinon": "^2.1.0",
+    "sinon-chai": "^2.9.0",
+    "sonar-scanner": "^3.0.3",
+    "supertest": "^3.0.0"
+  }
+}
