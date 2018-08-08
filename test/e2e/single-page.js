@@ -17,7 +17,9 @@ class SinglePage {
       const browser = await launchBrowser();
       this.page = browser.page;
     }
-    await this.page.goto(`${testUrl}${this.pagePath}`);
+    await this.page.goto(`${testUrl}${this.pagePath}`, {
+      timeout: 60000
+    });
   }
 
   async close() {

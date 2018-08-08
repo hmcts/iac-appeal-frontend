@@ -14,8 +14,8 @@
     "copy-assets": "cp -R ./node_modules/govuk-frontend/assets ./public/govuk-frontend",
     "test": "yarn test:unit && yarn test:functional",
     "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --recursive 'test/unit/**/*'",
-    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test mocha test/e2e/functional --recursive --timeout=5000",
-    "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test mocha test/e2e/smoke --recursive --timeout=5000",
+    "test:functional": "cross-env NODE_PATH=. NODE_ENV=test mocha test/e2e/functional --recursive --timeout=10000",
+    "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test mocha test/e2e/smoke --recursive --timeout=60000",
     "test:coverage": "cross-env NODE_PATH=. istanbul cover _mocha --dir test/coverage/html -- --recursive 'test/unit/**/*'",
     "test:a11y": "exit 0",
     "test:nsp": "nsp check",
@@ -41,10 +41,12 @@
     "joi": "^13.0.1",
     "lodash": "^4.17.10",
     "moment": "^2.18.1",
+    "memory-cache": "0.2.0",
     "node-sass": "4.5.3",
     "nsp": "^3.2.1",
     "nunjucks": "^3.0.0",
-    "serve-favicon": "^2.4.2"
+    "serve-favicon": "^2.4.2",
+    "yarn": "1.9.4"
   },
   "devDependencies": {
     "@hmcts/eslint-config": "^1.4.0",
