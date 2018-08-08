@@ -1,5 +1,5 @@
 const express = require('express');
-const paths = require('paths');
+const paths = require('app/paths');
 
 /* eslint-disable new-cap */
 const router = express.Router();

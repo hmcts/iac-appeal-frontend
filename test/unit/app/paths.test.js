@@ -1,5 +1,5 @@
 const { expect } = require('test/chai-sinon');
-const paths = require('paths');
+const paths = require('app/paths');
 
 describe('paths.js', () => {
   it('should return path for helloWorld', () => {

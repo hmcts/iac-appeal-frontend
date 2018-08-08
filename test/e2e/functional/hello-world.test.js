@@ -1,6 +1,6 @@
 const { expect } = require('test/chai-sinon');
 const SinglePage = require('test/e2e/single-page');
-const { helloWorld } = require('paths');
+const { helloWorld } = require('app/paths');
 
 describe('Hello world page', () => {
   /* eslint-disable init-declarations */
