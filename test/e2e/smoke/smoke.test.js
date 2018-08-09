@@ -1,22 +1,23 @@
 const { expect } = require('test/chai-sinon');
 const SinglePage = require('test/e2e/single-page');
-const { helloWorld } = require('app/paths');
+const { health } = require('app/paths');
 
 describe('@smoke tests', () => {
   /* eslint-disable init-declarations */
-  let helloWorldPage;
+  let healthPage;
   /* eslint-enable init-decalarations */
 
   before(async() => {
-    helloWorldPage = new SinglePage(helloWorld);
-    await helloWorldPage.open();
+    healthPage = new SinglePage(health);
+    await healthPage.open();
   });
 
   after(async() => {
-    await helloWorldPage.close();
+    await healthPage.close();
   });
 
-  it('has Hello world heading', async() => {
-    expect(await helloWorldPage.getHeading()).to.equal('Hello world');
+  it('health check says application is UP', async() => {
+    const content = JSON.parse(await healthPage.getRawBody());
+    expect(content.status).to.equal('UP');
   });
 });

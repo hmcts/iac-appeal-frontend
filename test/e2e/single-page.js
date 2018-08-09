@@ -35,6 +35,11 @@ class SinglePage {
     return heading;
   }
 
+  async getRawBody() {
+    await this.page.content();
+    return this.page.$eval('body', el => el.innerText);
+  }
+
   async captureScreenshot(filename) {
     /* eslint-disable no-sync */
     if (!fs.existsSync(outputDir)) {
