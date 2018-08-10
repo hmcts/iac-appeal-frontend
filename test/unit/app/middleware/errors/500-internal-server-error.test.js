@@ -1,7 +1,7 @@
 const { expect, sinon } = require('test/chai-sinon');
 const { INTERNAL_SERVER_ERROR } = require('http-status-codes');
-const internalServerErrorHandler = require('app/middleware/errors/500-internal-server-error');
 const { Logger } = require('@hmcts/nodejs-logging');
+const internalServerErrorHandler = require('app/middleware/errors/500-internal-server-error');
 
 /* eslint-disable init-declarations */
 describe('middleware/500-internal-server-error', () => {

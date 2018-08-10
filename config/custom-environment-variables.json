@@ -2,6 +2,7 @@
   "appInsights": {
     "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
   },
+  "iaCaseApiUrl": "IA_CASE_API_URL",
   "node": {
     "protocol": "HTTP_PROTOCOL",
     "hostname": "EXTERNAL_HOSTNAME",
