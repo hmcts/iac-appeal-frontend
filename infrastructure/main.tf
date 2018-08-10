@@ -1,5 +1,26 @@
+provider "azurerm" {}
+
+resource "azurerm_resource_group" "rg" {
+  name     = "${var.product}-${var.component}-${var.env}"
+  location = "${var.location}"
+  tags     = "${merge(var.common_tags, map("lastUpdated", "${timestamp()}"))}"
+}
+
+data "azurerm_key_vault" "ia_key_vault" {
+  name                = "${local.vaultName}"
+  resource_group_name = "${local.vaultName}"
+}
+
+data "azurerm_key_vault_secret" "ia_case_api_url" {
+  name      = "ia-case-api-url"
+  vault_uri = "${data.azurerm_key_vault.ia_key_vault.vault_uri}"
+}
+
 locals {
-  aseName = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
+  aseName             = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
+  previewVaultName    = "${var.raw_product}-aat"
+  nonPreviewVaultName = "${var.raw_product}-${var.env}"
+  vaultName           = "${(var.env == "preview" || var.env == "spreview") ? local.previewVaultName : local.nonPreviewVaultName}"
 }
 
 module "ia-apfr" {
@@ -17,5 +38,6 @@ module "ia-apfr" {
   app_settings = {
     WEBSITE_NODE_DEFAULT_VERSION = "8.11.1"
     NODE_ENV                     = "${var.infrastructure_env}"
+    IA_CASE_API_URL              = "${data.azurerm_key_vault_secret.ia_case_api_url.value}"
   }
 }

@@ -2,6 +2,7 @@
   "appInsights": {
     "instrumentationKey": "iKey"
   },
+  "iaCaseApiUrl": "http://localhost:8090",
   "node": {
     "protocol": "http",
     "hostname": "localhost",
