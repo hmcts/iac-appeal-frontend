@@ -1,16 +1,17 @@
 const { Express } = require('@hmcts/nodejs-logging');
 
-const appInsights = require('app-insights');
+const appInsights = require('./app-insights');
 const express = require('express');
-const locale = require('app/locale/en.json');
 const nunjucks = require('nunjucks');
-const routes = require('app/routes');
-const { security } = require('security.js');
+const security = require('./security');
 
-const notFoundHandler = require('app/middleware/errors/404-not-found');
-const internalServerErrorHandler = require('app/middleware/errors/500-internal-server-error');
+const locale = require('./app/locale/en.json');
+const routes = require('./app/routes');
 
-function setup(options) {
+const notFoundHandler = require('./app/middleware/errors/404-not-found');
+const internalServerErrorHandler = require('./app/middleware/errors/500-internal-server-error');
+
+function create(options) {
   const opts = options || {};
   if (!opts.disableAppInsights) {
     appInsights.enable();
@@ -18,12 +19,12 @@ function setup(options) {
 
   const app = express();
 
-  security(app);
+  security.apply(app);
 
   nunjucks.configure([
-    'app/views',
-    'node_modules/govuk-frontend/',
-    'node_modules/govuk-frontend/components/'
+    './app/views',
+    './node_modules/govuk-frontend/',
+    './node_modules/govuk-frontend/components/'
   ], {
     autoescape: true,
     express: app
@@ -31,7 +32,8 @@ function setup(options) {
 
   app.use(Express.accessLogger());
 
-  app.use('/public', express.static(`${__dirname}/public`));
+  app.use('/assets', express.static('./public/govuk-frontend/assets'));
+  app.use('/public', express.static('./public'));
   app.use('/', routes);
   app.use(notFoundHandler);
   app.use(internalServerErrorHandler);
@@ -41,4 +43,4 @@ function setup(options) {
   return app;
 }
 
-module.exports = { setup };
+module.exports = { create };

@@ -4,7 +4,7 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const internalServerErrorHandler = require('app/middleware/errors/500-internal-server-error');
 
 /* eslint-disable init-declarations */
-describe('middleware/500-internal-server-error', () => {
+describe('middleware/errors/500-internal-server-error', () => {
   const logger = Logger.getLogger('500-internal-server-error.js');
 
   let req;

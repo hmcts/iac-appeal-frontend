@@ -36,7 +36,7 @@ module "ia-apfr" {
   common_tags          = "${var.common_tags}"
 
   app_settings = {
-    WEBSITE_NODE_DEFAULT_VERSION = "8.11.1"
+    WEBSITE_NODE_DEFAULT_VERSION = "8.11.3"
     NODE_ENV                     = "${var.infrastructure_env}"
     IA_CASE_API_URL              = "${data.azurerm_key_vault_secret.ia_case_api_url.value}"
   }

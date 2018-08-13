@@ -2,7 +2,7 @@ const config = require('config');
 const helmet = require('helmet');
 const os = require('os');
 
-function security(app) {
+function apply(app) {
   app.use(helmet());
 
   // Helmet content security policy (CSP) to allow only assets from same domain.
@@ -49,4 +49,4 @@ function security(app) {
   });
 }
 
-module.exports = { security };
+module.exports = { apply };

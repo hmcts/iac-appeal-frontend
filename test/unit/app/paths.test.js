@@ -1,7 +1,7 @@
 const { expect } = require('test/chai-sinon');
 const paths = require('app/paths');
 
-describe('paths.js', () => {
+describe('paths', () => {
   it('should return path for helloWorld', () => {
     expect(paths).to.have.property('health').that.equals('/health');
     expect(paths).to.have.property('helloWorld').that.equals('/hello-world');
