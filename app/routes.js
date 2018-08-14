@@ -1,12 +1,12 @@
 const express = require('express');
-const paths = require('app/paths');
+const paths = require('./paths');
 
 /* eslint-disable new-cap */
-const router = express.Router();
+const router = express.Router({});
 /* eslint-enable new-cap */
 
-router.use(paths.health, require('app/middleware/health'));
-router.use(paths.helloWorld, require('app/middleware/hello-world'));
-router.use(paths.robots, require('app/middleware/robots'));
+router.use(paths.health, require('./middleware/health'));
+router.use(paths.helloWorld, require('./middleware/hello-world'));
+router.use(paths.robots, require('./middleware/robots'));
 
 module.exports = router;

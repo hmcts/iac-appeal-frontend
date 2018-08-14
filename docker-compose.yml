@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+  ia-appeal-frontend:
+    build:
+      context: .
+      args:
+        - http_proxy
+        - https_proxy
+        - no_proxy
+    image: hmcts/ia-appeal-frontend
+    container_name: ia-appeal-frontend
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}
