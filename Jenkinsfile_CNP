@@ -10,14 +10,16 @@ def product = "ia"
 def component = "appeal-frontend"
 
 withPipeline("nodejs", product, component) {
-  after('build') {sh 'yarn build'}
-  after("smoketest:preview") {
-      stage('Application URLs') {
-        def AppDevUrl = env.TEST_URL.replace("https", "http")
-        AppDevUrl = AppDevUrl.replace("-staging.", ".")
-        println "Application URL: " + AppDevUrl
-        println "Healthcheck URL: " + AppDevUrl + "/health"
-        println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
-      }
-  }
+    enableDockerBuild()
+    enableSlackNotifications('#ia-tech')
+    after('build') {sh 'yarn build'}
+    after("smoketest:preview") {
+        stage('Application URLs') {
+            def AppDevUrl = env.TEST_URL.replace("https", "http")
+            AppDevUrl = AppDevUrl.replace("-staging.", ".")
+            println "Application URL: " + AppDevUrl
+            println "Healthcheck URL: " + AppDevUrl + "/health"
+            println "Kudu URL: " + AppDevUrl.replace(".service.", ".scm.service.")
+        }
+    }
 }
