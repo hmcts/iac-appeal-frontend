@@ -13,7 +13,7 @@
     "build-sass": "node-sass ./app/assets/sass/application.scss ./public/css/main.css --output-style compressed",
     "copy-assets": "mkdir -p ./public/govuk-frontend/assets ; cp -R ./node_modules/govuk-frontend/assets/* ./public/govuk-frontend/assets/",
     "copy-js": "mkdir -p ./public/govuk-frontend/js ; cp -R ./node_modules/govuk-frontend/all.js ./public/govuk-frontend/js/",
-    "test": "yarn lint && yarn test:unit && yarn test:functional",
+    "test": "yarn lint && yarn test:unit",
     "test:unit": "cross-env NODE_PATH=. NODE_ENV=test mocha --recursive 'test/unit'",
     "test:functional": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/e2e/functional' --recursive --timeout=10000",
     "test:smoke": "cross-env NODE_PATH=. NODE_ENV=test mocha 'test/e2e/smoke' --recursive --timeout=60000",
