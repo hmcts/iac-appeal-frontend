@@ -1,19 +1,15 @@
 /* eslint-disable init-declarations, no-console */
 const puppeteer = require('puppeteer');
 const { createServer } = require('http');
-const { setup } = require('app');
-const config = require('config');
-
-const testUrl = config.get('test.url');
-const port = config.get('node.port');
+const app = require('app');
 
 let browser;
 let server;
 
-function startAppServer() {
+function startAppServer(port, testUrl) {
   if (!server && testUrl.indexOf('localhost') !== -1) {
     console.log(`Starting server on port ${port}`);
-    server = createServer(setup({ disableAppInsights: true })).listen(port);
+    server = createServer(app.create({ disableAppInsights: true })).listen(port);
   }
 }
 

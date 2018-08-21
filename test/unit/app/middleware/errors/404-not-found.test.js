@@ -3,7 +3,7 @@ const { NOT_FOUND } = require('http-status-codes');
 const notFoundHandler = require('app/middleware/errors/404-not-found');
 
 /* eslint-disable init-declarations */
-describe('middleware/404-not-found', () => {
+describe('middleware/errors/404-not-found', () => {
   let req;
   let res;
 
