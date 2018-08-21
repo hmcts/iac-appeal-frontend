@@ -2,15 +2,11 @@
 const puppeteer = require('puppeteer');
 const { createServer } = require('http');
 const app = require('app');
-const config = require('config');
-
-const testUrl = config.get('test.url');
-const port = config.get('node.port');
 
 let browser;
 let server;
 
-function startAppServer() {
+function startAppServer(port, testUrl) {
   if (!server && testUrl.indexOf('localhost') !== -1) {
     console.log(`Starting server on port ${port}`);
     server = createServer(app.create({ disableAppInsights: true })).listen(port);

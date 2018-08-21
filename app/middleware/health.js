@@ -1,8 +1,8 @@
 const healthCheck = require('@hmcts/nodejs-healthcheck');
 const childProcess = require('child_process');
-const cache = require('memory-cache');
+const memoryCache = require('memory-cache');
 
-function checkNodeModules() {
+function checkNodeModules(cache) {
   if (!cache.get('health/modules-ok')) {
     /* eslint-disable no-sync */
     childProcess.execSync(
@@ -18,7 +18,7 @@ function checkNodeModules() {
 
 module.exports = (req, res) => {
   try {
-    checkNodeModules();
+    checkNodeModules(memoryCache);
     res.json(healthCheck.up());
   } catch (error) {
     res.json(healthCheck.down());

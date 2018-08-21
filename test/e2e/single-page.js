@@ -3,6 +3,7 @@ const config = require('config');
 const fs = require('fs');
 const { startAppServer, launchBrowser } = require('test/e2e/environment');
 
+const port = config.get('node.port');
 const testUrl = config.get('test.url');
 const outputDir = config.get('test.outputDir');
 
@@ -12,7 +13,7 @@ class SinglePage {
   }
 
   async open() {
-    startAppServer();
+    startAppServer(port, testUrl);
     if (typeof this.page === 'undefined') {
       const browser = await launchBrowser();
       this.page = browser.page;
