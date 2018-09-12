@@ -34,6 +34,8 @@ module "ia-apfr" {
   additional_host_name = "${var.env != "preview" ? var.additional_hostname : "null"}"
   https_only           = "${var.env != "preview" ? "true" : "true"}"
   common_tags          = "${var.common_tags}"
+  asp_rg               = "${var.product}-${var.component}-${var.env}"
+  asp_name             = "${var.product}-${var.component}-${var.env}"
 
   app_settings = {
     WEBSITE_NODE_DEFAULT_VERSION = "8.11.1"
