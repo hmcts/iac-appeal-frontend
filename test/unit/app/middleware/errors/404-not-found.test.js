@@ -18,6 +18,6 @@ describe('middleware/errors/404-not-found', () => {
   it('gives 404 page', () => {
     notFoundHandler(req, res);
     expect(res.status).to.have.been.calledOnce.calledWith(NOT_FOUND);
-    expect(res.render).to.have.been.calledOnce.calledWith('errors/404-not-found.html');
+    expect(res.render).to.have.been.calledOnce.calledWith('errors/404-not-found.njk');
   });
 });

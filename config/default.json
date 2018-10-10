@@ -2,7 +2,16 @@
   "appInsights": {
     "instrumentationKey": "iKey"
   },
+  "auth": {
+    "s2sEndpoint": "http://127.0.0.1:4502"
+  },
+  "cookieNames": {
+    "accessToken": "__auth__",
+    "userId": "__userid__"
+  },
   "iaCaseApiUrl": "http://localhost:8090",
+  "ccdDataStoreApiUrl": "http://127.0.0.1:4452",
+  "microservice": "jui_webapp",
   "node": {
     "protocol": "http",
     "hostname": "localhost",

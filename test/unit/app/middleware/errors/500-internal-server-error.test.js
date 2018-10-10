@@ -28,6 +28,6 @@ describe('middleware/errors/500-internal-server-error', () => {
     const error = new Error('Error for test purpose');
     internalServerErrorHandler(error, req, res);
     expect(res.status).to.have.been.calledOnce.calledWith(INTERNAL_SERVER_ERROR);
-    expect(res.render).to.have.been.calledOnce.calledWith('errors/500-internal-server-error.html');
+    expect(res.render).to.have.been.calledOnce.calledWith('errors/500-internal-server-error.njk');
   });
 });

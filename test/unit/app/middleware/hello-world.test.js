@@ -15,6 +15,6 @@ describe('middleware/helloWorld', () => {
 
   it('renders hello world page', () => {
     helloWorld(req, res);
-    expect(res.render).to.have.been.calledOnce.calledWith('hello-world.html');
+    expect(res.render).to.have.been.calledOnce.calledWith('hello-world.njk');
   });
 });

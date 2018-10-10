@@ -1,0 +1,59 @@
+{% extends "layout.njk" %}
+
+{% from "back-link/macro.njk" import govukBackLink %}
+{% from "button/macro.njk" import govukButton %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+
+    {{ govukBackLink({
+        text: "Back",
+        href: backUrl,
+        classes: "govuk-!-margin-bottom-7"
+    }) }}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+
+            <form method="post">
+
+                {{ govukCheckboxes({
+                    idPrefix: "groundsOfAppeal",
+                    name: "groundsOfAppeal",
+                    fieldset: {
+                        legend: {
+                            text: i18n.groundsOfAppeal.header,
+                            isPageHeading: false,
+                            classes: "govuk-fieldset__legend--xl"
+                        }
+                    },
+                    hint: {
+                        text: "You can choose more than one."
+                    },
+                    items: [
+                        {
+                            checked: groundsOfAppeal.refugeeConventionChecked,
+                            value: "refugeeConvention",
+                            text: "Removing the appellant from the UK would breach the UK's obligations under the Refugee Convention"
+                        },
+                        {
+                            checked: groundsOfAppeal.humanitarianProtectionChecked,
+                            value: "humanitarianProtection",
+                            text: "Removing the appellant from the UK would breach the UK's obligations in relation to persons eligible for a grant of humanitarian protection"
+                        },
+                        {
+                            checked: groundsOfAppeal.humanRightsConventionChecked,
+                            value: "humanRightsConvention",
+                            text: "Removing the appellant from the UK would be unlawful under section 6 of the Human Rights Act 1998 (public authority not to act contrary to Human Rights Convention)"
+                        }
+                    ]
+                }) }}
+
+                {{ govukButton({ text: "Save" }) }}
+
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}

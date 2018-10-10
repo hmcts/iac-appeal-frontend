@@ -3,6 +3,8 @@
     "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
   },
   "iaCaseApiUrl": "IA_CASE_API_URL",
+  "ccdDataStoreApiUrl": "CCD_DATA_STORE_API_URL",
+  "microservice": "IA_MICROSERVICE",
   "node": {
     "protocol": "HTTP_PROTOCOL",
     "hostname": "EXTERNAL_HOSTNAME",

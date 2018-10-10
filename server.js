@@ -5,6 +5,6 @@ const config = require('config');
 const logger = Logger.getLogger('server.js');
 const port = config.get('node.port');
 
-app.create().listen(port);
+app.create({ disableAppInsights: true }).listen(port);
 
 logger.info(`Server listening on port: ${port}`);

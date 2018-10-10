@@ -1,5 +1,5 @@
 module.exports = {
   health: '/health',
-  helloWorld: '/hello-world',
+  groundsOfAppeal: '/:jurisdiction/:caseType/:caseId/grounds-of-appeal',
   robots: '/robots.txt'
 };
