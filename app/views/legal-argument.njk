@@ -9,141 +9,122 @@
 
 {% block content %}
 
-    {{ govukBackLink({
-        text: "Back",
-        href: backUrl,
-        classes: "govuk-!-margin-bottom-7"
-    }) }}
+    <h1 class="govuk-heading-xl">Build your appeal</h1>
 
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
+    {% if errors|length %}
 
-            <h1 class="govuk-heading-xl">{{ i18n.legalArgument.header }}</h1>
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
 
-            {% if errors|length %}
+    {% endif %}
 
-                {{ govukErrorSummary({
-                    titleText: "There is a problem",
-                    errorList: errorsSummary
-                }) }}
+    <form method="post" enctype="multipart/form-data">
 
-            {% endif %}
+        <input name="previouslyExchangedDocumentsData" type="hidden" value="{{ previouslyExchangedDocumentsData }}"/>
 
-            <p>Download the legal argument template and use it to create a legal argument document. Once your legal argument is ready, upload it.</p>
+        <section class="govuk-!-margin-bottom-8">
 
-            <p><a href="https://ia-prototype.cloudfabric.co.uk:3501/static/LegalArgumentTemplate.doc" target="_blank">Legal_Argument_Template_10_11_18.doc</a>
+            <h2 class="govuk-heading-m">1. Download the template below and use it to create your appeal argument.</h2>
+
+            <p class="template-download">
+                <a href="https://ia-prototype.cloudfabric.co.uk:3501/static/LegalArgumentTemplate.doc" target="_blank">Appeal_Argument_Template_10_11_18.doc</a>
+                <span class="metadata">
+                            MS Word Document, 38KB<br>
+                            This file may not be suitable for users of assistive technology.<br>
+                            <a href="#">Request an accessible format.</a>
+                        </span>
             </p>
 
-            <p>Upload a legal argument that references your evidence and the grounds and issues of the case. Add evidence that supports your online argument.
-                You'll be able to add more evidence later.</p>
+            <p>Advice: Your appeal argument should reference your evidence and the grounds and issues of the case.</p>
 
-            <h4 class="govuk-heading-s">Advice on uploads</h4>
+        </section>
 
-            <ul class="govuk-list govuk-list--bullet">
-                <li>Files must be no more than 20MB in size.</li>
-                <li>You can upload jpg, png, svg, gif, doc and PDF files.</li>
-                <li>Before uploading a file, give it a meaningful name. For example, health-report-JSmith.pdf is a good file name for a health report for an
-                    appellant named John Smith. Avoid meaningless file names such as IMG000023.jpg.
-                </li>
-            </ul>
+        <section class="govuk-!-margin-bottom-5">
 
-            <form method="post" enctype="multipart/form-data">
+            <h2 class="govuk-heading-m">2. Upload your appeal argument below.</h2>
 
-                <input name="previouslyExchangedDocumentsData" type="hidden" value="{{ previouslyExchangedDocumentsData }}"/>
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
 
-                {% call govukFieldset({
-                    legend: {
-                        text: "Legal argument",
-                        classes: "govuk-fieldset__legend--m",
-                        isPageHeading: false
-                    }
-                }) %}
+                    {% call govukFieldset({
+                        legend: {
+                            classes: "govuk-fieldset__legend--s",
+                            isPageHeading: false
+                        }
+                    }) %}
 
-                    {% if legalArgument.document %}
-
-                        <p><a href="{{ legalArgument.document.document_binary_url }}" target="_blank">{{ legalArgument.document.document_filename }}</a></p>
+                        {% if legalArgument.document %}
+                            <p><a href="{{ legalArgument.document.document_binary_url }}"
+                                  target="_blank">{{ legalArgument.document.document_filename }}</a></p>
+                        {% endif %}
 
                         {{ govukFileUpload({
                             id: "legal-argument-document",
                             name: "legal-argument-document",
                             label: {
-                                text: "Upload a new document to replace this one"
-                            }
-                        }) }}
-
-                    {% else %}
-
-                        {{ govukFileUpload({
-                            id: "legal-argument-document",
-                            name: "legal-argument-document",
-                            label: {
-                                text: "Upload a document"
+                                text: "Upload a file"
                             },
                             errorMessage: errors.legalArgumentDocument
                         }) }}
 
-                    {% endif %}
+                        {{ govukTextarea({
+                            name: "legal-argument-description",
+                            id: "legal-argument-description",
+                            label: {
+                                text: "Describe the document (optional)"
+                            },
+                            value: legalArgument.description,
+                            errorMessage: errors.legalArgumentDescription
+                        }) }}
 
-                    {{ govukTextarea({
-                        name: "legal-argument-description",
-                        id: "legal-argument-description",
-                        label: {
-                            text: "Describe the legal argument document"
-                        },
-                        value: legalArgument.description,
-                        errorMessage: errors.legalArgumentDescription
-                    }) }}
+                    {% endcall %}
 
-                {% endcall %}
+                </div>
+            </div>
 
-                {% call govukFieldset({
-                    legend: {
-                        text: "If there is supporting evidence, add it here",
-                        classes: "govuk-fieldset__legend--m",
-                        isPageHeading: false
-                    }
-                }) %}
+        </section>
 
-                    {% if legalArgument.evidence.documents[0] %}
+        <section class="govuk-!-margin-bottom-5">
 
-                        <p><a href="{{ legalArgument.evidence.documents[0].value.document.document_binary_url }}" target="_blank">{{ legalArgument.evidence.documents[0].value.document.document_filename }}</a></p>
+            <h2 class="govuk-heading-m">3. Upload your evidence below. This must include any witness statements.</h2>
+
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-one-half">
+
+                    {% call govukFieldset({
+                        legend: {
+                            text: "Evidence",
+                            classes: "govuk-fieldset__legend--s",
+                            isPageHeading: false
+                        }
+                    }) %}
+
+                        {% if legalArgument.evidence.documents[0] %}
+                            <p><a href="{{ legalArgument.evidence.documents[0].value.document.document_binary_url }}"
+                                  target="_blank">{{ legalArgument.evidence.documents[0].value.document.document_filename }}</a></p>
+                        {% endif %}
 
                         {{ govukFileUpload({
                             id: "supporting-evidence-document",
                             name: "supporting-evidence-document",
                             label: {
-                                text: "Upload a new document to replace this one"
+                                text: "Upload a new document"
                             }
                         }) }}
 
-                    {% else %}
+                    {% endcall %}
 
-                        {{ govukFileUpload({
-                            id: "supporting-evidence-document",
-                            name: "supporting-evidence-document",
-                            label: {
-                                text: "Upload a document"
-                            }
-                        }) }}
+                </div>
+            </div>
 
-                    {% endif %}
+        </section>
 
-                    {{ govukTextarea({
-                        name: "supporting-evidence-description",
-                        id: "supporting-evidence-description",
-                        label: {
-                            text: "Describe the evidence document"
-                        },
-                        value: legalArgument.evidence.documents[0].value.description
-                    }) }}
+        {{ govukButton({ text: "Continue" }) }}
 
-                {% endcall %}
+    </form>
 
-                {{ govukButton({ text: "Save" }) }}
-
-            </form>
-
-        </div>
-    </div>
+    {% include "includes/upload-advice.njk" %}
 
 {% endblock %}

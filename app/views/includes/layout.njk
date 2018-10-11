@@ -11,15 +11,33 @@
 {% endblock %}
 
 {% block beforeContent %}
+
     {{ govukPhaseBanner({
-        tag: {
-            text: "alpha"
-        },
+        tag: { text: "alpha"},
         html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
     }) }}
+
+    {{ govukBackLink({
+        text: "Back",
+        href: backUrl,
+        classes: "govuk-!-margin-bottom-4 govuk-!-margin-top-6"
+    }) }}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+{% endblock %}
+
+{% block footer %}
+
+        </div>
+    </div>
+
+    {{ govukFooter({}) }}
+
 {% endblock %}
 
 {% block bodyEnd %}
-<script src="/public/govuk-frontend/js/all.js"></script>
-<script>window.GOVUKFrontend.initAll()</script>
+    <script src="/public/govuk-frontend/js/all.js"></script>
+    <script>window.GOVUKFrontend.initAll()</script>
 {% endblock %}

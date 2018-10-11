@@ -6,25 +6,21 @@
 
 {% block content %}
 
-    {{ govukBackLink({
-        text: "Back",
-        href: backUrl,
-        classes: "govuk-!-margin-bottom-7"
-    }) }}
+    <form method="post">
 
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-xl">Edit grounds of appeal</h1>
 
-            <form method="post">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-one-half">
 
                 {{ govukCheckboxes({
                     idPrefix: "groundsOfAppeal",
                     name: "groundsOfAppeal",
                     fieldset: {
                         legend: {
-                            text: i18n.groundsOfAppeal.header,
+                            text: "The grounds you'll build your appeal on.",
                             isPageHeading: false,
-                            classes: "govuk-fieldset__legend--xl"
+                            classes: "govuk-fieldset__legend--m"
                         }
                     },
                     hint: {
@@ -49,11 +45,11 @@
                     ]
                 }) }}
 
-                {{ govukButton({ text: "Save" }) }}
-
-            </form>
-
+            </div>
         </div>
-    </div>
+
+        {{ govukButton({ text: "Save" }) }}
+
+    </form>
 
 {% endblock %}

@@ -94,20 +94,11 @@ module.exports = async(req, res) => {
 
     if (!legalArgument.document) {
       values.errors.legalArgumentDocument = {
-        text: 'A legal argument document is required',
+        text: 'An appeal argument is required',
         href: "#legal-argument-document"
       };
 
       values.errorsSummary.push(values.errors.legalArgumentDocument);
-    }
-
-    if (!legalArgument.description) {
-      values.errors.legalArgumentDescription = {
-        text: 'A legal argument description is required',
-        href: "#legal-argument-description"
-      };
-
-      values.errorsSummary.push(values.errors.legalArgumentDescription);
     }
 
     if (!Object.keys(values.errors).length) {

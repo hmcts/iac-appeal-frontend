@@ -1,11 +1,5 @@
 {
   "pageTitle": "Immigration & Asylum",
-  "groundsOfAppeal": {
-    "header": "Grounds of appeal"
-  },
-  "legalArgument": {
-    "header": "Build your appeal"
-  },
   "error": {
     "error404": {
       "header": "Sorry, this page could not be found"
