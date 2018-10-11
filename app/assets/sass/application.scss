@@ -3,4 +3,6 @@ $path: "/public/images/";
 $govuk-global-styles: true;
 $govuk-assets-path: '/assets/';
 
+$govuk-page-width: 1220px;
+
 @import "node_modules/govuk-frontend/all";

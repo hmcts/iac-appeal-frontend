@@ -1,4 +1,4 @@
-const groundsOfAppealRepository = require('../services/data/groundsOfAppealRepository');
+const groundsOfAppealRepository = require('../services/api/groundsOfAppealRepository');
 const juiLinkBuilder = require('../services/juiLinkBuilder');
 const juiRedirector = require('../services/juiRedirector');
 
@@ -50,7 +50,7 @@ module.exports = async(req, res) => {
   }
 
   if (req.method == 'POST') {
-    const post = req.body || {};
+    const post = req.postData || {};
 
     console.debug("post:");
     console.debug(post);

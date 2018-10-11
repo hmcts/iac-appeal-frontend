@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "cross-env NODE_PATH=. node server.js",
-    "dev": "yarn build && cross-env NODE_PATH=. nodemon -e js,json,html,njk server.js",
+    "dev": "yarn build && cross-env NODE_PATH=. nodemon -e js,json,html,njk --trace-warnings server.js",
     "build": "yarn build-sass && yarn copy-assets && yarn copy-js",
     "build-sass": "node-sass ./app/assets/sass/application.scss ./public/css/main.css --output-style compressed",
     "copy-assets": "mkdir -p ./public/govuk-frontend/assets ; cp -R ./node_modules/govuk-frontend/assets/* ./public/govuk-frontend/assets/",
@@ -35,11 +35,11 @@
     "@hmcts/nodejs-logging": "^3.0.0",
     "applicationinsights": "^1.0.1",
     "axios": "^0.18.0",
-    "body-parser": "^1.17.1",
     "config": "^2.0.1",
     "cookie-parser": "^1.4.3",
     "cross-env": "^5.2.0",
     "express": "^4.16.0",
+    "formidable": "^1.2.1",
     "govuk-frontend": "^1.2.0",
     "helmet": "^3.10.0",
     "http-status-codes": "^1.1.6",
@@ -56,7 +56,6 @@
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "serve-favicon": "^2.4.2",
-    "superagent": "^3.8.3",
     "yarn": "1.9.4"
   },
   "devDependencies": {

@@ -5,8 +5,8 @@ module.exports = async(req, res, next) => {
     const serviceToken = await serviceTokenGenerator();
     req.headers['ServiceAuthorization'] = serviceToken.token;
   } catch (e) {
-    console.log('Could not add S2S Service Token header')
+    console.log('Could not add S2S Service Token header');
   }
 
-  next()
+  next();
 };
