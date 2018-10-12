@@ -1,6 +1,6 @@
-const legalArgumentRepository = require('../services/api/legalArgumentRepository');
-const juiLinkBuilder = require('../services/juiLinkBuilder');
-const juiRedirector = require('../services/juiRedirector');
+const legalArgumentRepository = require('../../services/api/legalArgumentRepository');
+const juiLinkBuilder = require('../../services/juiLinkBuilder');
+const juiRedirector = require('../../services/juiRedirector');
 const moment = require('moment');
 
 function buildLegalArgumentFromPost(
@@ -54,17 +54,20 @@ module.exports = async(req, res) => {
 
   const caseId = req.params.caseId;
   const juiTab = 'buildappeal';
+  const storedCase = req.storedCase;
 
   let values = {
+    caseId: caseId,
+    appellantName: storedCase.caseDetails.appellantName,
     legalArgument: {},
-    backUrl: juiLinkBuilder(req, caseId, juiTab),
+    backUrl: juiLinkBuilder.buildLinkToCase(req, caseId, juiTab),
     data: {},
     errors: {},
     errorsSummary: [],
   };
 
-  const storedLegalArgument = await
-    legalArgumentRepository
+  const storedLegalArgument =
+    await legalArgumentRepository
       .get(req.auth, caseId)
       .catch(err => {
         console.error({
@@ -114,7 +117,7 @@ module.exports = async(req, res) => {
           res.render('errors/500-internal-server-error.njk');
         });
 
-      juiRedirector(req, res, caseId, juiTab);
+      juiRedirector.redirectToCase(req, res, caseId, juiTab);
       return;
     }
 
@@ -123,7 +126,7 @@ module.exports = async(req, res) => {
   }
 
   res.render(
-    'legal-argument.njk',
+    'forms/legal-argument.njk',
     values
   );
 };

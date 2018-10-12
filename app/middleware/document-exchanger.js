@@ -1,5 +1,5 @@
 const fs = require('fs');
-const documentUploader = require('../../services/api/documentUploader');
+const documentUploader = require('../services/api/documentUploader');
 
 const exchangeableFileFieldNames = [
   'legal-argument-document',

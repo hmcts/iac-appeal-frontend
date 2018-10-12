@@ -1,6 +1,8 @@
 {% extends "template.njk" %}
 
+{% from "back-link/macro.njk" import govukBackLink %}
 {% from "phase-banner/macro.njk" import govukPhaseBanner %}
+{% from "global-header/macro.njk" import hmctsGlobalHeader %}
 
 {% block pageTitle %}
     {{ i18n.pageTitle }}
@@ -10,30 +12,36 @@
     {% include "includes/head.njk" %}
 {% endblock %}
 
-{% block beforeContent %}
+{% block header %}
+    {% include "includes/hmcts/jui-header.njk" %}
+{% endblock %}
 
-    {{ govukPhaseBanner({
-        tag: { text: "alpha"},
-        html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
-    }) }}
+{% block main %}
+    <div class="jui-width-container">
 
-    {{ govukBackLink({
-        text: "Back",
-        href: backUrl,
-        classes: "govuk-!-margin-bottom-4 govuk-!-margin-top-6"
-    }) }}
+        {{ govukBackLink({
+            text: "Back",
+            href: backUrl,
+            classes: "govuk-!-margin-bottom-4 govuk-!-margin-top-6"
+        }) }}
 
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+
+                <main class="govuk-main-wrapper {{ mainClasses }}" id="main-content" role="main">
+                    {% block content %}{% endblock %}
+                </main>
+
+            </div>
+        </div>
+
+    </div>
 
 {% endblock %}
 
 {% block footer %}
 
-        </div>
-    </div>
-
-    {{ govukFooter({}) }}
+    {% include "includes/hmcts/jui-footer.njk" %}
 
 {% endblock %}
 

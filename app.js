@@ -7,12 +7,14 @@ const security = require('./security');
 
 const cookieParser = require('cookie-parser');
 const locale = require('./app/locale/en.json');
+const paths = require('./app/paths');
 const routes = require('./app/routes');
 
-const requestParser = require('./app/middleware/transformers/request-parser');
-const documentExchanger = require('./app/middleware/transformers/document-exchanger');
-const notFoundHandler = require('./app/middleware/errors/404-not-found');
+const caseLoader = require('./app/middleware/case-loader');
+const requestParser = require('./app/middleware/request-parser');
+const documentExchanger = require('./app/middleware/document-exchanger');
 const internalServerErrorHandler = require('./app/middleware/errors/500-internal-server-error');
+const notFoundHandler = require('./app/middleware/errors/404-not-found');
 const serviceTokenHeader = require('./app/middleware/auth/service-token-header');
 const userAuthentication = require('./app/middleware/auth/user-authentication');
 
@@ -29,7 +31,9 @@ function create(options) {
   nunjucks.configure([
     './app/views',
     './node_modules/govuk-frontend/',
-    './node_modules/govuk-frontend/components/'
+    './node_modules/govuk-frontend/components/',
+    './node_modules/@hmcts/frontend/',
+    './node_modules/@hmcts/frontend/components/'
   ], {
     autoescape: true,
     express: app
@@ -41,7 +45,9 @@ function create(options) {
 
   app.use(serviceTokenHeader);
   app.use(userAuthentication);
-  app.use(documentExchanger);
+
+  app.use(paths.case, caseLoader);
+  app.use(paths.case, documentExchanger);
 
   app.use('/assets', express.static('./public/govuk-frontend/assets'));
   app.use('/public', express.static('./public'));

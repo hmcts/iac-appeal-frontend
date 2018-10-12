@@ -1,0 +1,33 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+
+{% block content %}
+
+    <form method="post">
+
+        <h1 class="govuk-heading-xl">Tell us about your client</h1>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                {{ govukCheckboxes({
+                    name: "checklist",
+                    items: [
+                        { text: "My client is at least 18 years old" },
+                        { text: "My client is not currently in detention" },
+                        { text: "My client isn't appealing with other people as part of a family appeal" },
+                        { text: "My client is located in one of these postcodes: HA1, HA2, HA4" },
+                        { text: "My client is presently in the UK" }
+                    ]
+                }) }}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}

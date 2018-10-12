@@ -1,34 +1,27 @@
-const groundsOfAppealRepository = require('../services/api/groundsOfAppealRepository');
-const juiLinkBuilder = require('../services/juiLinkBuilder');
-const juiRedirector = require('../services/juiRedirector');
+const groundsOfAppealRepository = require('../../services/api/groundsOfAppealRepository');
+const juiLinkBuilder = require('../../services/juiLinkBuilder');
+const juiRedirector = require('../../services/juiRedirector');
 
 module.exports = async(req, res) => {
 
   const caseId = req.params.caseId;
   const juiTab = 'buildappeal';
+  const storedCase = req.storedCase;
 
   let values = {
+    caseId: caseId,
+    appellantName: storedCase.caseDetails.appellantName,
     groundsOfAppeal: {},
-    backUrl: juiLinkBuilder(req, caseId, juiTab),
+    backUrl: juiLinkBuilder.buildLinkToCase(req, caseId, juiTab),
     data: {},
     errors: {},
     errorsSummary: [],
   };
 
-  // console.log("=================");
-  // console.log(req.auth);
-  // console.log("-----------------");
-  // console.log(req.headers);
-  // console.log("-----------------");
-  // console.log(req.cookies);
-  // console.log("-----------------");
-  // console.log(req.params);
-  // console.log("=================");
-
   if (req.method == 'GET') {
 
-    const groundsOfAppeal = await
-      groundsOfAppealRepository
+    const groundsOfAppeal =
+      await groundsOfAppealRepository
         .get(req.auth, caseId)
         .catch(err => {
           console.error({
@@ -39,9 +32,6 @@ module.exports = async(req, res) => {
           res.render('errors/500-internal-server-error.njk');
         });
 
-    console.log("groundsOfAppeal:");
-    console.log(groundsOfAppeal);
-
     if (groundsOfAppeal) {
       values.groundsOfAppeal.refugeeConventionChecked = groundsOfAppeal.includes('refugeeConvention');
       values.groundsOfAppeal.humanitarianProtectionChecked = groundsOfAppeal.includes('humanitarianProtection');
@@ -51,9 +41,6 @@ module.exports = async(req, res) => {
 
   if (req.method == 'POST') {
     const post = req.postData || {};
-
-    console.debug("post:");
-    console.debug(post);
 
     const groundsOfAppeal = Array.isArray(post.groundsOfAppeal) ? post.groundsOfAppeal : post.groundsOfAppeal ? [post.groundsOfAppeal] : [];
 
@@ -68,12 +55,12 @@ module.exports = async(req, res) => {
         res.render('errors/500-internal-server-error.njk');
       });
 
-    juiRedirector(req, res, caseId, juiTab);
+    juiRedirector.redirectToCase(req, res, caseId, juiTab);
     return;
   }
 
   res.render(
-    'grounds-of-appeal.njk',
+    'forms/grounds-of-appeal.njk',
     values
   );
 };
