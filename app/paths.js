@@ -1,5 +1,5 @@
 module.exports = {
-  case: '/IA/Asylum/:caseId(\\d+)',
+  securedPath: '/IA/Asylum/:caseId(\\d+)',
   createAppealHomeOfficeReference: '/IA/Asylum/create-appeal/home-office-reference',
   createAppealBasicDetails: '/IA/Asylum/create-appeal/basic-details',
   createAppealAddress: '/IA/Asylum/create-appeal/address',

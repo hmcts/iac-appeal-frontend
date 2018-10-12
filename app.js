@@ -45,14 +45,14 @@ function create(options) {
   app.use(cookieParser());
   app.use(requestParser);
 
-  app.use(serviceTokenHeader);
-  app.use(userAuthentication);
-
-  app.use(paths.case, caseLoader);
-  app.use(paths.case, documentExchanger);
-
   app.use('/assets', express.static('./public/govuk-frontend/assets'));
   app.use('/public', express.static('./public'));
+
+  app.use(paths.securedPath, serviceTokenHeader);
+  app.use(paths.securedPath, userAuthentication);
+  app.use(paths.securedPath, caseLoader);
+  app.use(paths.securedPath, documentExchanger);
+
   app.use('/', routes);
   app.use(notFoundHandler);
   app.use(internalServerErrorHandler);
