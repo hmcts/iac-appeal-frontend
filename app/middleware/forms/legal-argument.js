@@ -20,33 +20,24 @@ function buildLegalArgumentFromPost(
     legalArgument.description = post['legal-argument-description'];
   }
 
-  legalArgument.evidence = {
-    documents: [
-      {
-        id: '0',
-        value: {}
-      }
-    ]
-  }
-
   if (exchangedDocuments['supporting-evidence-document']) {
-    legalArgument.evidence.documents[0].value.document = exchangedDocuments['supporting-evidence-document'];
-    legalArgument.evidence.documents[0].value.stored = "Yes";
-    legalArgument.evidence.documents[0].value.dateUploaded = moment().format('YYYY-MMD-D');
-  } else {
-    if (storedLegalArgument.evidence && storedLegalArgument.evidence.documents.documents.length > 0) {
-      legalArgument.evidence.documents[0].value.document = storedLegalArgument.evidence.documents[0].value.document;
-      legalArgument.evidence.documents[0].value.stored = storedLegalArgument.evidence.documents[0].value.stored;
-      legalArgument.evidence.documents[0].value.dateUploaded = storedLegalArgument.evidence.documents[0].value.dateUploaded;
+
+    legalArgument.evidence = {
+      documents: [
+        {
+          id: '0',
+          value: {
+            document: exchangedDocuments['supporting-evidence-document'],
+            stored: "Yes",
+            dateUploaded: moment().format('YYYY-MMD-D'),
+            description: 'Legal argument supporting evidence.'
+          }
+        }
+      ]
     }
-  }
 
-  if (post['supporting-evidence-description']) {
-    legalArgument.evidence.documents[0].value.description = post['supporting-evidence-description'];
-  }
-
-  if (!legalArgument.evidence.documents[0].value) {
-    delete legalArgument.evidence
+  } else {
+    legalArgument.evidence = storedLegalArgument.evidence;
   }
 
   return legalArgument;
@@ -105,6 +96,15 @@ module.exports = async(req, res) => {
       };
 
       values.errorsSummary.push(values.errors.legalArgumentDocument);
+    }
+
+    if (!legalArgument.evidence) {
+      values.errors.supportingEvidenceDocument = {
+        text: 'Supporting evidence is required',
+        href: "#supporting-evidence-document"
+      };
+
+      values.errorsSummary.push(values.errors.supportingEvidenceDocument);
     }
 
     if (!Object.keys(values.errors).length) {
