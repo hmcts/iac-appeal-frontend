@@ -1,9 +1,10 @@
+const config = require('config');
 
 function redirectTo(req, res, path) {
 
   const url =
     req.protocol + '://' +
-    req.get('Host') +
+    req.hostname + ':' + config.get('node.port') +
     path;
 
   console.log("Redirecting to: " + url)
