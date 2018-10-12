@@ -26,6 +26,8 @@ function create(options) {
 
   const app = express();
 
+  app.set('trust proxy', true);
+
   security.apply(app);
 
   const nunjucksEnvironment = nunjucks.configure([

@@ -34,9 +34,11 @@ function buildLegalArgumentFromPost(
     legalArgument.evidence.documents[0].value.stored = "Yes";
     legalArgument.evidence.documents[0].value.dateUploaded = moment().format('YYYY-MMD-D');
   } else {
-    legalArgument.evidence.documents[0].value.document = storedLegalArgument.evidence.documents[0].value.document;
-    legalArgument.evidence.documents[0].value.stored = storedLegalArgument.evidence.documents[0].value.stored;
-    legalArgument.evidence.documents[0].value.dateUploaded = storedLegalArgument.evidence.documents[0].value.dateUploaded;
+    if (storedLegalArgument.evidence && storedLegalArgument.evidence.documents.documents.length > 0) {
+      legalArgument.evidence.documents[0].value.document = storedLegalArgument.evidence.documents[0].value.document;
+      legalArgument.evidence.documents[0].value.stored = storedLegalArgument.evidence.documents[0].value.stored;
+      legalArgument.evidence.documents[0].value.dateUploaded = storedLegalArgument.evidence.documents[0].value.dateUploaded;
+    }
   }
 
   if (post['supporting-evidence-description']) {
