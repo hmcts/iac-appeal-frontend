@@ -1,0 +1,112 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "date-input/macro.njk" import govukDateInput %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "input/macro.njk" import govukInput %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Supply basic details for your client</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                {{ govukInput({
+                    id: "basic-details-title",
+                    name: "basic-details-title",
+                    label: { text: "Title" },
+                    classes: "govuk-input--width-10",
+                    value: basicDetails.title,
+                    errorMessage: errors.basicDetailsTitle
+                }) }}
+
+                {{ govukInput({
+                    id: "basic-details-given-names",
+                    name: "basic-details-given-names",
+                    label: { text: "Given names" },
+                    classes: "govuk-input--width-20",
+                    value: basicDetails.givenNames,
+                    errorMessage: errors.basicDetailsGivenNames
+                }) }}
+
+                {{ govukInput({
+                    id: "basic-details-last-name",
+                    name: "basic-details-last-name",
+                    label: { text: "Last name" },
+                    classes: "govuk-input--width-20",
+                    value: basicDetails.lastName,
+                    errorMessage: errors.basicDetailsLastName
+                }) }}
+
+                {{ govukDateInput({
+                    id: "basic-details-date-of-birth",
+                    name: "basic-details-date-of-birth",
+                    fieldset: {
+                        legend: {
+                            text: "Date of birth",
+                            isPageHeading: false
+                        }
+                    },
+                    items: [
+                        { name: "day", value: basicDetails.dateOfBirthDay },
+                        { name: "month", value: basicDetails.dateOfBirthMonth },
+                        { name: "year", value: basicDetails.dateOfBirthYear }
+                    ],
+                    errorMessage: errors.basicDetailsDateOfBirth
+                }) }}
+
+                {{ govukInput({
+                    id: "basic-details-nationality",
+                    name: "basic-details-nationality",
+                    label: { text: "Nationality" },
+                    classes: "govuk-input--width-20",
+                    value: basicDetails.nationality,
+                    errorMessage: errors.basicDetailsNationality
+                }) }}
+
+                {{ govukRadios({
+                    classes: "govuk-radios--inline",
+                    id: "basic-details-nationality-contested",
+                    name: "basic-details-nationality-contested",
+                    fieldset: {
+                        legend: {
+                            text: "My client's nationality is contested",
+                            isPageHeading: false
+                        }
+                    },
+                    items: [
+                        {
+                            checked: basicDetails.nationalityContestedChecked.yes,
+                            value: "yes",
+                            text: "Yes"
+                        },
+                        {
+                            checked: basicDetails.nationalityContestedChecked.no,
+                            value: "no",
+                            text: "No"
+                        }
+                    ],
+                    errorMessage: errors.basicDetailsNationalityContested
+                }) }}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}

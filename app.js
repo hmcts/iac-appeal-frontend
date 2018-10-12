@@ -28,7 +28,7 @@ function create(options) {
 
   security.apply(app);
 
-  nunjucks.configure([
+  const nunjucksEnvironment = nunjucks.configure([
     './app/views',
     './node_modules/govuk-frontend/',
     './node_modules/govuk-frontend/components/',
@@ -38,6 +38,8 @@ function create(options) {
     autoescape: true,
     express: app
   });
+
+  nunjucksEnvironment.addFilter('is_array', o => Array.isArray(o));
 
   app.use(Express.accessLogger());
   app.use(cookieParser());

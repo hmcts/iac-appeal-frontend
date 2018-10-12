@@ -1,0 +1,138 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "macros/check-your-answer.njk" import answer %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Check your answers</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-two-thirds">
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Home Office reference</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Home Office reference number", homeOfficeDecision.referenceNumber, paths.createAppealHomeOfficeReference) }}
+                        {{ answer("Decision date on the letter", homeOfficeDecision.decisionDate, paths.createAppealHomeOfficeReference) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Basic details for your client</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Title", basicDetails.title, paths.createAppealBasicDetails) }}
+                        {{ answer("Given names", basicDetails.givenNames, paths.createAppealBasicDetails) }}
+                        {{ answer("Last name", basicDetails.lastName, paths.createAppealBasicDetails) }}
+                        {{ answer("Date of birth", basicDetails.dateOfBirth, paths.createAppealBasicDetails) }}
+                        {{ answer("Nationality", basicDetails.nationality, paths.createAppealBasicDetails) }}
+                        {{ answer("My client's nationality is contested", basicDetails.nationalityContested, paths.createAppealBasicDetails) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Your client's address</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("My client has a fixed address?", address.fixedAddress, paths.createAppealAddress) }}
+                        {{ answer("Address", address.formattedAddress, paths.createAppealAddress) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Why is your client appealing?</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Appeal reason", appealReason.value, paths.createAppealAppealReason) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Grounds of appeal</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Grounds", groundsOfAppeal.values, paths.createAppealGroundsOfAppeal) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">New matters</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("New matters", newMatters.values, paths.createAppealNewMatters) }}
+                        {{ answer("Other", newMatters.other, paths.createAppealNewMatters) }}
+                        {{ answer("Other document", newMatters.other.document, paths.createAppealNewMatters) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Other appeals</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Other appeals?", otherAppealsQuestion.value, paths.createAppealOtherAppealsQuestion) }}
+                        {{ answer("Appeal number", otherAppealsAnswer[0].value, paths.createAppealOtherAppealsAnswer) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Your own reference number</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Reference number", referenceNumber, paths.createAppealReferenceNumber) }}
+
+                    </dl>
+
+                </section>
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Submit" }) }}
+
+    </form>
+
+{% endblock %}

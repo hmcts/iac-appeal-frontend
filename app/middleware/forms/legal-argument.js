@@ -61,6 +61,7 @@ module.exports = async(req, res) => {
     appellantName: storedCase.caseDetails.appellantName,
     legalArgument: {},
     backUrl: juiLinkBuilder.buildLinkToCase(req, caseId, juiTab),
+    dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
     data: {},
     errors: {},
     errorsSummary: [],

@@ -2,24 +2,34 @@
 
 {% from "button/macro.njk" import govukButton %}
 {% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
 
 {% block content %}
 
+    <h1 class="govuk-heading-xl">The grounds you'll build your appeal on.</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
     <form method="post">
 
-        <h1 class="govuk-heading-xl">Edit grounds of appeal</h1>
-
-        <div class="govuk-grid-row">
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
             <div class="govuk-grid-column-one-half">
+
+                <p>You’ll be able to explain your grounds later.</p>
 
                 {{ govukCheckboxes({
                     idPrefix: "grounds-of-appeal",
                     name: "grounds-of-appeal",
                     fieldset: {
                         legend: {
-                            text: "The grounds you'll build your appeal on.",
-                            isPageHeading: false,
-                            classes: "govuk-fieldset__legend--m"
+                            isPageHeading: false
                         }
                     },
                     hint: {
@@ -47,7 +57,7 @@
             </div>
         </div>
 
-        {{ govukButton({ text: "Save" }) }}
+        {{ govukButton({ text: "Continue" }) }}
 
     </form>
 

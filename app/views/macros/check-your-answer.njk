@@ -1,0 +1,25 @@
+{% macro answer(question, answer, path) %}
+
+    <div class="app-check-your-answers__contents">
+        <dt class="app-check-your-answers__question">
+            {{ question }}
+        </dt>
+        <dd class="app-check-your-answers__answer">
+            {% if answer | is_array %}
+                <ul>
+                    {% for line in answer %}
+                        <li>{{ line }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                {{ answer }}
+            {% endif %}
+        </dd>
+        <dd class="app-check-your-answers__change">
+            <a href="{{ path }}">
+                Change<span class="govuk-visually-hidden"> {{ question | lower }}</span>
+            </a>
+        </dd>
+    </div>
+
+{% endmacro %}

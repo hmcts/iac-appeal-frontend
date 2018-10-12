@@ -1,0 +1,135 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "input/macro.njk" import govukInput %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Your client's address</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                <p>We'll use this to work out which hearing centre is best for them.</p>
+
+                {{ govukRadios({
+                    classes: "govuk-radios--inline",
+                    id: "address-fixed-address",
+                    name: "address-fixed-address",
+                    fieldset: {
+                        legend: {
+                            text: "My client has a fixed address",
+                            isPageHeading: false
+                        }
+                    },
+                    items: [
+                        {
+                            checked: address.fixedAddressChecked.yes,
+                            value: "yes",
+                            text: "Yes"
+                        },
+                        {
+                            checked: address.fixedAddressChecked.no,
+                            value: "no",
+                            text: "No"
+                        }
+                    ],
+                    errorMessage: errors.addressFixedAddressChecked
+                }) }}
+
+                {% call govukFieldset({
+                    legend: {
+                        text: "Address",
+                        classes: "govuk-fieldset__legend--m",
+                        isPageHeading: true
+                    }
+                }) %}
+
+                    {{ govukInput({
+                        label: {
+                            html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
+                        },
+                        id: "address-line-1",
+                        name: "address-line-1",
+                        value: address.line1,
+                        errorMessage: errors.addressLine1
+                    }) }}
+
+                    {{ govukInput({
+                        label: {
+                            html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
+                        },
+                        id: "address-line-2",
+                        name: "address-line-2",
+                        value: address.line2,
+                        errorMessage: errors.addressLine2
+                    }) }}
+
+                    {{ govukInput({
+                        label: {
+                            text: "Town or city"
+                        },
+                        classes: "govuk-!-width-two-thirds",
+                        id: "address-town",
+                        name: "address-town",
+                        value: address.town,
+                        errorMessage: errors.addressTown
+                    }) }}
+
+                    {{ govukInput({
+                        label: {
+                            text: "County"
+                        },
+                        classes: "govuk-!-width-two-thirds",
+                        id: "address-county",
+                        name: "address-county",
+                        value: address.county,
+                        errorMessage: errors.addressCounty
+                    }) }}
+
+                    {{ govukInput({
+                        label: {
+                            text: "Postcode"
+                        },
+                        classes: "govuk-input--width-10",
+                        id: "address-postcode",
+                        name: "address-postcode",
+                        value: address.postcode,
+                        errorMessage: errors.addressPostcode
+                    }) }}
+
+                    {{ govukInput({
+                        label: {
+                            text: "Country"
+                        },
+                        classes: "govuk-input--width-20",
+                        id: "address-country",
+                        name: "address-country",
+                        value: address.country,
+                        errorMessage: errors.addressCountry
+                    }) }}
+
+                {% endcall %}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}

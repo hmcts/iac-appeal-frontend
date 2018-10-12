@@ -1,16 +1,15 @@
-const juiLinkBuilder = require('../../services/juiLinkBuilder');
-const juiRedirector = require('../../services/juiRedirector');
+const paths = require('../../../paths');
+const pathRedirector = require('../../../services/pathRedirector');
+const juiLinkBuilder = require('../../../services/juiLinkBuilder');
 
 module.exports = async(req, res) => {
 
-  const caseId = req.params.caseId;
-  const storedCase = req.storedCase;
+  console.log("Controller: " + __filename);
 
   let values = {
-    caseId: caseId,
-    appellantName: storedCase.caseDetails.appellantName,
     appeal: {},
     backUrl: juiLinkBuilder.buildLinkToDashboard(req),
+    dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
     data: {},
     errors: {},
     errorsSummary: [],
@@ -26,8 +25,13 @@ module.exports = async(req, res) => {
   // console.log(req.params);
   // console.log("=================");
 
+  if (req.method == 'POST') {
+
+    return pathRedirector.redirectTo(req, res, paths.createAppealReferenceNumber);
+  }
+
   res.render(
-    'forms/create-appeal/checklist.njk',
+    'forms/create-appeal/other-appeals-answer.njk',
     values
   );
 };

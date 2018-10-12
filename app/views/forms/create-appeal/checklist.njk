@@ -2,14 +2,24 @@
 
 {% from "button/macro.njk" import govukButton %}
 {% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
 
 {% block content %}
 
+    <h1 class="govuk-heading-xl">Tell us about your client</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
     <form method="post">
 
-        <h1 class="govuk-heading-xl">Tell us about your client</h1>
-
-        <div class="govuk-grid-row">
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
             <div class="govuk-grid-column-two-thirds">
 
                 {{ govukCheckboxes({

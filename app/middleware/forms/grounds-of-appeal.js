@@ -13,6 +13,7 @@ module.exports = async(req, res) => {
     appellantName: storedCase.caseDetails.appellantName,
     groundsOfAppeal: {},
     backUrl: juiLinkBuilder.buildLinkToCase(req, caseId, juiTab),
+    dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
     data: {},
     errors: {},
     errorsSummary: [],
@@ -42,7 +43,8 @@ module.exports = async(req, res) => {
   if (req.method == 'POST') {
     const post = req.postData || {};
 
-    const groundsOfAppeal = Array.isArray(post.groundsOfAppeal) ? post.groundsOfAppeal : post.groundsOfAppeal ? [post.groundsOfAppeal] : [];
+    const groundsOfAppeal =
+      Array.isArray(post['grounds-of-appeal']) ? post['grounds-of-appeal'] : post['grounds-of-appeal'] ? [post['grounds-of-appeal']] : [];
 
     await groundsOfAppealRepository
       .post(req.auth, caseId, groundsOfAppeal)

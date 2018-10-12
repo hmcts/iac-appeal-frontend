@@ -1,0 +1,46 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Why is your client appealing?</h1>
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                {{ govukRadios({
+                    idPrefix: "appeal-reason",
+                    name: "appeal-reason",
+                    fieldset: {
+                        legend: {
+                            text: "Appeal reason",
+                            isPageHeading: false
+                        }
+                    },
+                    items: [
+                        {
+                            checked: appealReason.protectionClaimRefusedChecked,
+                            value: "protectionClaimRefused",
+                            text: "My client's protection claim was refused"
+                        },
+                        {
+                            checked: appealReason.protectionStatusRevokedChecked,
+                            value: "protectionStatusRevoked",
+                            text: "My client's protection status was revoked"
+                        }
+                    ]
+                }) }}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}

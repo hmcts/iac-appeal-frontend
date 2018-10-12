@@ -1,0 +1,119 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "file-upload/macro.njk" import govukFileUpload %}
+{% from "textarea/macro.njk" import govukTextarea %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">New matters</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                {{ govukCheckboxes({
+                    idPrefix: "new-matters",
+                    name: "new-matters",
+                    fieldset: {
+                        legend: {
+                            text: "New matters (optional)",
+                            isPageHeading: false
+                        }
+                    },
+                    hint: {
+                        text: "You can choose more than one."
+                    },
+                    items: [
+                        {
+                            checked: newMatters.humanRightsNewChildChecked,
+                            value: "humanRightsNewChild",
+                            text: "Birth of a child"
+                        },
+                        {
+                            checked: newMatters.humanRightsNewRelationshipChecked,
+                            value: "humanRightsNewRelationship",
+                            text: "New relationship"
+                        },
+                        {
+                            checked: newMatters.humanRightsBreachOfFamilyLifeChecked,
+                            value: "humanRightsBreachOfFamilyLife",
+                            text: "Removal would disrupt family life"
+                        },
+                        {
+                            checked: newMatters.humanRightsRefugeeChecked,
+                            value: "humanRightsRefugee",
+                            text: "Appellant now claims to be a refugee"
+                        },
+                        {
+                            checked: newMatters.humanRightsMarriedBritishCitizenChecked,
+                            value: "humanRightsMarriedBritishCitizen",
+                            text: "New marriage"
+                        },
+                        {
+                            checked: newMatters.otherChecked,
+                            value: "other",
+                            text: "Other"
+                        }
+                    ]
+                }) }}
+
+                {% call govukFieldset({
+                    legend: {
+                        text: "Other",
+                        classes: "govuk-fieldset__legend--m",
+                        isPageHeading: false
+                    }
+                }) %}
+
+                    <p>The Home Office needs to agree that this is a new matter. If the Home Office does not agree it should be considered as part of the
+                        appeal, the tribunal will not be able to proceed. Your client may then need to make a new application for a Home Office asylum decision.
+                        (optional)</p>
+
+                    {{ govukTextarea({
+                        name: "new-matters-other",
+                        id: "new-matters-other",
+                        hint: {
+                            text: "You can write an answer or upload a document."
+                        },
+                        value: newMatters.other,
+                        errorMessage: errors.newMattersOther
+                    }) }}
+
+                    {% if newMatters.other.document %}
+                        <p><a href="{{ newMatters.other.document.document_binary_url }}"
+                              target="_blank">{{ newMatters.other.document.document_filename }}</a></p>
+                    {% endif %}
+
+                    {{ govukFileUpload({
+                        id: "new-matters-other-document",
+                        name: "new-matters-other-document",
+                        label: {
+                            text: "Upload a file"
+                        },
+                        errorMessage: errors.newMattersOtherDocument
+                    }) }}
+
+                {% endcall %}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}

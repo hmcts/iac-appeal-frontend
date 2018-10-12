@@ -1,0 +1,74 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "date-input/macro.njk" import govukDateInput %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "input/macro.njk" import govukInput %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Home Office reference</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                {% if errors|length %}
+
+                    {{ govukErrorSummary({
+                        titleText: "There is a problem",
+                        errorList: errorsSummary
+                    }) }}
+
+                {% endif %}
+
+                <p>Look for the reference number and date on the Home Office decision letter.</p>
+
+                <div class="govuk-!-margin-bottom-8">
+                    <img src="/public/img/home-office-letter.png" width="626" height="269"/>
+                </div>
+
+                {{ govukInput({
+                    id: "home-office-reference-number",
+                    name: "home-office-reference-number",
+                    label: { text: "Home Office reference number" },
+                    classes: "govuk-input--width-20",
+                    value: homeOfficeDecision.referenceNumber,
+                    errorMessage: errors.homeOfficeReferenceNumber
+                }) }}
+
+                {{ govukDateInput({
+                    id: "home-office-decision-date",
+                    name: "home-office-decision-date",
+                    fieldset: {
+                        legend: {
+                            text: "Decision date on the letter",
+                            isPageHeading: false
+                        }
+                    },
+                    items: [
+                        { name: "day", value: homeOfficeDecision.decisionDateDay },
+                        { name: "month", value: homeOfficeDecision.decisionDateMonth },
+                        { name: "year", value: homeOfficeDecision.decisionDateYear }
+                    ],
+                    errorMessage: errors.homeOfficeDecisionDate
+                }) }}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}
