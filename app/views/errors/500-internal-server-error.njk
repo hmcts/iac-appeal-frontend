@@ -1,6 +1,8 @@
-{% extends "layout.njk" %}
+{% extends "includes/layout.njk" %}
 
 {% block content %}
-<h2 class="govuk-heading-l">{{ i18n.error.error500.header }}</h2>
-<p>{{ i18n.error.error500.content }}</p>
+
+    <h2 class="govuk-heading-l">{{ i18n.error.error500.header }}</h2>
+    <p>{{ i18n.error.error500.content }}</p>
+
 {% endblock %}
