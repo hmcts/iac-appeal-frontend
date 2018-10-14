@@ -13,6 +13,7 @@ module.exports = {
   createAppeal: '/IA/Asylum/create-appeal',
   groundsOfAppeal: '/IA/Asylum/:caseId(\\d+)/grounds-of-appeal',
   legalArgument: '/IA/Asylum/:caseId(\\d+)/legal-argument',
+  submitCase: '/IA/Asylum/:caseId(\\d+)/submit-case',
   health: '/health',
   robots: '/robots.txt'
 };

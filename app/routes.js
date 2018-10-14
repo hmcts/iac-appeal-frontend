@@ -19,6 +19,7 @@ router.use(paths.createAppealCheckAnswers, require('./middleware/forms/create-ap
 router.use(paths.createAppeal, require('./middleware/forms/create-appeal/checklist'));
 router.use(paths.groundsOfAppeal, require('./middleware/forms/grounds-of-appeal'));
 router.use(paths.legalArgument, require('./middleware/forms/legal-argument'));
+router.use(paths.submitCase, require('./middleware/forms/submit-case'));
 router.use(paths.robots, require('./middleware/system/robots'));
 
 module.exports = router;
