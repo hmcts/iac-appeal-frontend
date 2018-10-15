@@ -28,9 +28,11 @@
 
                 {{ govukRadios({
                     classes: "govuk-radios--inline",
-                    id: "address-fixed-address",
-                    name: "address-fixed-address",
+                    name: "has-fixed-address",
                     fieldset: {
+                        attributes: {
+                            id: "has-fixed-address"
+                        },
                         legend: {
                             text: "My client has a fixed address",
                             isPageHeading: false
@@ -38,23 +40,26 @@
                     },
                     items: [
                         {
-                            checked: address.fixedAddressChecked.yes,
+                            checked: data.hasFixedAddress == 'yes',
                             value: "yes",
                             text: "Yes"
                         },
                         {
-                            checked: address.fixedAddressChecked.no,
+                            checked: data.hasFixedAddress == 'no',
                             value: "no",
                             text: "No"
                         }
                     ],
-                    errorMessage: errors.addressFixedAddressChecked
+                    errorMessage: errors.hasFixedAddress
                 }) }}
 
                 {% call govukFieldset({
+                    attributes: {
+                        id: "address-fieldset"
+                    },
                     legend: {
                         text: "Address",
-                        classes: "govuk-fieldset__legend--m",
+                        classes: "govuk-fieldset__legend--s",
                         isPageHeading: true
                     }
                 }) %}
@@ -63,20 +68,20 @@
                         label: {
                             html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>'
                         },
-                        id: "address-line-1",
-                        name: "address-line-1",
-                        value: address.line1,
-                        errorMessage: errors.addressLine1
+                        id: "line-1",
+                        name: "line-1",
+                        value: data.line1,
+                        errorMessage: errors.line1
                     }) }}
 
                     {{ govukInput({
                         label: {
                             html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>'
                         },
-                        id: "address-line-2",
-                        name: "address-line-2",
-                        value: address.line2,
-                        errorMessage: errors.addressLine2
+                        id: "line-2",
+                        name: "line-2",
+                        value: data.line2,
+                        errorMessage: errors.line2
                     }) }}
 
                     {{ govukInput({
@@ -84,10 +89,10 @@
                             text: "Town or city"
                         },
                         classes: "govuk-!-width-two-thirds",
-                        id: "address-town",
-                        name: "address-town",
-                        value: address.town,
-                        errorMessage: errors.addressTown
+                        id: "town-or-city",
+                        name: "town-or-city",
+                        value: data.townOrCity,
+                        errorMessage: errors.townOrCity
                     }) }}
 
                     {{ govukInput({
@@ -95,10 +100,10 @@
                             text: "County"
                         },
                         classes: "govuk-!-width-two-thirds",
-                        id: "address-county",
-                        name: "address-county",
-                        value: address.county,
-                        errorMessage: errors.addressCounty
+                        id: "county",
+                        name: "county",
+                        value: data.county,
+                        errorMessage: errors.county
                     }) }}
 
                     {{ govukInput({
@@ -106,10 +111,10 @@
                             text: "Postcode"
                         },
                         classes: "govuk-input--width-10",
-                        id: "address-postcode",
-                        name: "address-postcode",
-                        value: address.postcode,
-                        errorMessage: errors.addressPostcode
+                        id: "postcode",
+                        name: "postcode",
+                        value: data.postcode,
+                        errorMessage: errors.postcode
                     }) }}
 
                     {{ govukInput({
@@ -117,10 +122,10 @@
                             text: "Country"
                         },
                         classes: "govuk-input--width-20",
-                        id: "address-country",
-                        name: "address-country",
-                        value: address.country,
-                        errorMessage: errors.addressCountry
+                        id: "country",
+                        name: "country",
+                        value: data.country,
+                        errorMessage: errors.country
                     }) }}
 
                 {% endcall %}

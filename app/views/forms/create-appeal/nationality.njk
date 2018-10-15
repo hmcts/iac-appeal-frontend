@@ -1,0 +1,61 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "date-input/macro.njk" import govukDateInput %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "input/macro.njk" import govukInput %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Nationality</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                {{ govukInput({
+                    id: "nationality",
+                    name: "nationality",
+                    label: { text: "Enter your client's nationality." },
+                    classes: "govuk-input--width-20",
+                    value: data.nationality,
+                    errorMessage: errors.nationality
+                }) }}
+
+                {{ govukCheckboxes({
+                    name: "nationality-contested",
+                    fieldset: {
+                        classes: "govuk-!-margin-top-9",
+                        attributes: {
+                            id: "nationality-contested"
+                        }
+                    },
+                    items: [
+                        {
+                            checked: data.nationalityContested == 'yes',
+                            value: "yes",
+                            text: "My client's nationality is contested"
+                        }
+                    ],
+                    errorMessage: errors.nationalityContested
+                }) }}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}

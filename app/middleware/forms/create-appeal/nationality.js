@@ -12,10 +12,10 @@ module.exports = async(req, res) => {
   console.debug("=================");
 
   req.session.createAppeal = req.session.createAppeal || {};
-  req.session.createAppeal.appealReason = req.session.createAppeal.appealReason || {};
+  req.session.createAppeal.nationality = req.session.createAppeal.nationality || {};
 
   let values = {
-    backUrl: paths.createAppealAddress,
+    backUrl: paths.createAppealBasicDetails,
     dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
     signOutUrl: juiLinkBuilder.buildLinkToSignOut(req),
     data: {},
@@ -23,7 +23,7 @@ module.exports = async(req, res) => {
     errorsSummary: [],
   };
 
-  values.data = JSON.parse(JSON.stringify(req.session.createAppeal.appealReason));
+  values.data = JSON.parse(JSON.stringify(req.session.createAppeal.nationality));
 
   if (req.method == 'POST') {
     const post = req.postData || {};
@@ -33,28 +33,26 @@ module.exports = async(req, res) => {
     console.debug(post);
     console.debug("=================");
 
-    values.data.appealReason = post['appeal-reason'];
+    values.data.nationality = post['nationality'];
+    values.data.nationalityContested = post['nationality-contested'];
 
-    if (!values.data.appealReason) {
-      values.errors.appealReason = {
-        text: 'You must provide a reason for this appeal',
-        href: "#appeal-reason"
+    if (!values.data.nationality) {
+      values.errors.nationality = {
+        text: 'You must provide your client\'s nationality',
+        href: "#nationality"
       };
 
-      values.errorsSummary.push(values.errors.appealReason);
+      values.errorsSummary.push(values.errors.nationality);
     }
 
     if (!Object.keys(values.errors).length) {
 
-      if (values.data.appealReason == 'protectionClaimRefused') {
-        values.data.formattedAppealReason = 'My client\'s protection claim was refused';
-      } else {
-        values.data.formattedAppealReason = 'My client\'s protection status was revoked';
-      }
+      values.data.formattedNationalityContested =
+        values.data.nationalityContested.replace(/./, values.data.nationalityContested.toUpperCase()[0]);
 
-      req.session.createAppeal.appealReason = values.data;
+      req.session.createAppeal.nationality = values.data;
 
-      return pathRedirector.redirectTo(req, res, paths.createAppealGroundsOfAppeal);
+      return pathRedirector.redirectTo(req, res, paths.createAppealAddress);
     }
   }
 
@@ -64,7 +62,7 @@ module.exports = async(req, res) => {
   console.debug("=================");
 
   res.render(
-    'forms/create-appeal/appeal-reason.njk',
+    'forms/create-appeal/nationality.njk',
     values
   );
 };

@@ -12,7 +12,11 @@
                     {% endfor %}
                 </ul>
             {% else %}
-                {{ answer }}
+                {% if answer | is_multiline %}
+                    <pre>{{ answer }}</pre>
+                {% else %}
+                    {{ answer }}
+                {% endif %}
             {% endif %}
         </dd>
         <dd class="app-check-your-answers__change">

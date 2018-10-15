@@ -1,0 +1,78 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "checkboxes/macro.njk" import govukCheckboxes %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "file-upload/macro.njk" import govukFileUpload %}
+{% from "radios/macro.njk" import govukRadios %}
+{% from "textarea/macro.njk" import govukTextarea %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Your appeal application is out of time</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+
+        <input name="previouslyExchangedDocumentsData" type="hidden" value="{{ data.previouslyExchangedDocumentsData }}"/>
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                <h2 class="govuk-heading-m">You've missed the deadline for appealing.</h2>
+
+                <p>You can ask for permission to appeal outside of the deadline.</p>
+
+                {% call govukFieldset({
+                    attributes: {
+                        id: "explanation-fieldset"
+                    }
+                }) %}
+
+                    <p>Explain why you believe your late appeal should be allowed to go ahead (optional)</p>
+
+                    {{ govukTextarea({
+                        name: "explanation",
+                        id: "explanation",
+                        hint: {
+                            text: "You can write an answer or upload a document."
+                        },
+                        value: data.explanation,
+                        errorMessage: errors.explanation
+                    }) }}
+
+                    {% if data.explanationDocument %}
+                        <p><a href="{{ data.explanationDocument.document_binary_url }}"
+                              target="_blank">{{ data.explanationDocument.document_filename }}</a></p>
+                    {% endif %}
+
+                    {{ govukFileUpload({
+                        id: "explanation-document",
+                        name: "explanation-document",
+                        label: {
+                            text: "Upload a file"
+                        },
+                        errorMessage: errors.explanationDocument
+                    }) }}
+
+                {% endcall %}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+    {% include "includes/upload-advice.njk" %}
+
+{% endblock %}

@@ -3,6 +3,8 @@ const juiRedirector = require('../../services/juiRedirector');
 
 module.exports = async(req, res) => {
 
+  console.debug("Controller: " + __filename);
+
   const caseId = req.params.caseId;
   const juiTab = 'buildappeal';
 

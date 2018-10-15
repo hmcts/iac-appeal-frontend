@@ -1,0 +1,74 @@
+{% extends "includes/layout.njk" %}
+
+{% from "button/macro.njk" import govukButton %}
+{% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "fieldset/macro.njk" import govukFieldset %}
+{% from "radios/macro.njk" import govukRadios %}
+
+{% block content %}
+
+    <h1 class="govuk-heading-xl">Has your client appealed against any other immigration decision in the United Kingdom or overseas?</h1>
+
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
+    <form method="post">
+
+        <div class="govuk-grid-row govuk-!-margin-bottom-5">
+            <div class="govuk-grid-column-one-half">
+
+                {% call govukFieldset({
+                    attributes: {
+                        id: "has-other-appeals-fieldset"
+                    }
+                }) %}
+
+                    {{ govukRadios({
+                        idPrefix: "has-other-appeals",
+                        name: "has-other-appeals",
+                        fieldset: {
+                            legend: {
+                                isPageHeading: false
+                            }
+                        },
+                        items: [
+                            {
+                                checked: data.hasOtherAppeals == 'yes',
+                                value: "yes",
+                                text: "Yes"
+                            },
+                            {
+                                checked: data.hasOtherAppeals == 'yesWithoutAppealNumber',
+                                value: "yesWithoutAppealNumber",
+                                text: "Yes, but I don't have an appeal number"
+                            },
+                            {
+                                checked: data.hasOtherAppeals == 'no',
+                                value: "no",
+                                text: "No"
+                            },
+                            {
+                                checked: data.hasOtherAppeals == 'notSure',
+                                value: "notSure",
+                                text: "I'm not sure"
+                            }
+                        ],
+                        errorMessage: errors.hasOtherAppeals
+                    }) }}
+
+                {% endcall %}
+
+            </div>
+        </div>
+
+        {{ govukButton({ text: "Continue" }) }}
+
+    </form>
+
+{% endblock %}

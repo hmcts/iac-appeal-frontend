@@ -1,7 +1,10 @@
 const { Express } = require('@hmcts/nodejs-logging');
 
 const appInsights = require('./app-insights');
+const config = require('config');
 const express = require('express');
+const session = require('express-session');
+const SessionFileStore = require('session-file-store')(session);
 const nunjucks = require('nunjucks');
 const security = require('./security');
 
@@ -27,6 +30,13 @@ function create(options) {
   const app = express();
 
   app.set('trust proxy', true);
+  app.use(session({
+    secret: config.get('sessionSecret'),
+    store: new SessionFileStore({
+      path: '/tmp/sessions',
+      secret: config.get('sessionSecret')
+    })
+  }));
 
   security.apply(app);
 
@@ -42,6 +52,7 @@ function create(options) {
   });
 
   nunjucksEnvironment.addFilter('is_array', o => Array.isArray(o));
+  nunjucksEnvironment.addFilter('is_multiline', o => typeof o === 'string' && o.includes('\n'));
 
   app.use(Express.accessLogger());
   app.use(cookieParser());

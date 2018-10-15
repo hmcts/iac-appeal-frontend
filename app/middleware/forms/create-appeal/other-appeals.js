@@ -12,10 +12,10 @@ module.exports = async(req, res) => {
   console.debug("=================");
 
   req.session.createAppeal = req.session.createAppeal || {};
-  req.session.createAppeal.appealReason = req.session.createAppeal.appealReason || {};
+  req.session.createAppeal.otherAppeals = req.session.createAppeal.otherAppeals || {};
 
   let values = {
-    backUrl: paths.createAppealAddress,
+    backUrl: paths.createAppealHasOtherAppeals,
     dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
     signOutUrl: juiLinkBuilder.buildLinkToSignOut(req),
     data: {},
@@ -23,7 +23,7 @@ module.exports = async(req, res) => {
     errorsSummary: [],
   };
 
-  values.data = JSON.parse(JSON.stringify(req.session.createAppeal.appealReason));
+  values.data = JSON.parse(JSON.stringify(req.session.createAppeal.otherAppeals));
 
   if (req.method == 'POST') {
     const post = req.postData || {};
@@ -33,28 +33,22 @@ module.exports = async(req, res) => {
     console.debug(post);
     console.debug("=================");
 
-    values.data.appealReason = post['appeal-reason'];
+    values.data.appealNumber = post['appeal-number'];
 
-    if (!values.data.appealReason) {
-      values.errors.appealReason = {
-        text: 'You must provide a reason for this appeal',
-        href: "#appeal-reason"
+    if (!values.data.appealNumber) {
+      values.errors.appealNumber = {
+        text: 'You must tell us the previous appeal number',
+        href: "#appeal-number"
       };
 
-      values.errorsSummary.push(values.errors.appealReason);
+      values.errorsSummary.push(values.errors.appealNumber);
     }
 
     if (!Object.keys(values.errors).length) {
 
-      if (values.data.appealReason == 'protectionClaimRefused') {
-        values.data.formattedAppealReason = 'My client\'s protection claim was refused';
-      } else {
-        values.data.formattedAppealReason = 'My client\'s protection status was revoked';
-      }
+      req.session.createAppeal.otherAppeals = values.data;
 
-      req.session.createAppeal.appealReason = values.data;
-
-      return pathRedirector.redirectTo(req, res, paths.createAppealGroundsOfAppeal);
+      return pathRedirector.redirectTo(req, res, paths.createAppealReferenceNumber);
     }
   }
 
@@ -64,7 +58,7 @@ module.exports = async(req, res) => {
   console.debug("=================");
 
   res.render(
-    'forms/create-appeal/appeal-reason.njk',
+    'forms/create-appeal/other-appeals.njk',
     values
   );
 };

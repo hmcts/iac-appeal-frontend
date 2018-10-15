@@ -4,7 +4,6 @@
 {% from "date-input/macro.njk" import govukDateInput %}
 {% from "error-summary/macro.njk" import govukErrorSummary %}
 {% from "input/macro.njk" import govukInput %}
-{% from "radios/macro.njk" import govukRadios %}
 
 {% block content %}
 
@@ -25,35 +24,35 @@
             <div class="govuk-grid-column-one-half">
 
                 {{ govukInput({
-                    id: "basic-details-title",
-                    name: "basic-details-title",
+                    id: "title",
+                    name: "title",
                     label: { text: "Title" },
                     classes: "govuk-input--width-10",
-                    value: basicDetails.title,
-                    errorMessage: errors.basicDetailsTitle
+                    value: data.title,
+                    errorMessage: errors.title
                 }) }}
 
                 {{ govukInput({
-                    id: "basic-details-given-names",
-                    name: "basic-details-given-names",
+                    id: "given-names",
+                    name: "given-names",
                     label: { text: "Given names" },
                     classes: "govuk-input--width-20",
-                    value: basicDetails.givenNames,
-                    errorMessage: errors.basicDetailsGivenNames
+                    value: data.givenNames,
+                    errorMessage: errors.givenNames
                 }) }}
 
                 {{ govukInput({
-                    id: "basic-details-last-name",
-                    name: "basic-details-last-name",
+                    id: "last-name",
+                    name: "last-name",
                     label: { text: "Last name" },
                     classes: "govuk-input--width-20",
-                    value: basicDetails.lastName,
-                    errorMessage: errors.basicDetailsLastName
+                    value: data.lastName,
+                    errorMessage: errors.lastName
                 }) }}
 
                 {{ govukDateInput({
-                    id: "basic-details-date-of-birth",
-                    name: "basic-details-date-of-birth",
+                    id: "date-of-birth",
+                    name: "date-of-birth",
                     fieldset: {
                         legend: {
                             text: "Date of birth",
@@ -61,45 +60,11 @@
                         }
                     },
                     items: [
-                        { name: "day", value: basicDetails.dateOfBirthDay },
-                        { name: "month", value: basicDetails.dateOfBirthMonth },
-                        { name: "year", value: basicDetails.dateOfBirthYear }
+                        { name: "day", value: data.dateOfBirthDay },
+                        { name: "month", value: data.dateOfBirthMonth },
+                        { name: "year", value: data.dateOfBirthYear }
                     ],
-                    errorMessage: errors.basicDetailsDateOfBirth
-                }) }}
-
-                {{ govukInput({
-                    id: "basic-details-nationality",
-                    name: "basic-details-nationality",
-                    label: { text: "Nationality" },
-                    classes: "govuk-input--width-20",
-                    value: basicDetails.nationality,
-                    errorMessage: errors.basicDetailsNationality
-                }) }}
-
-                {{ govukRadios({
-                    classes: "govuk-radios--inline",
-                    id: "basic-details-nationality-contested",
-                    name: "basic-details-nationality-contested",
-                    fieldset: {
-                        legend: {
-                            text: "My client's nationality is contested",
-                            isPageHeading: false
-                        }
-                    },
-                    items: [
-                        {
-                            checked: basicDetails.nationalityContestedChecked.yes,
-                            value: "yes",
-                            text: "Yes"
-                        },
-                        {
-                            checked: basicDetails.nationalityContestedChecked.no,
-                            value: "no",
-                            text: "No"
-                        }
-                    ],
-                    errorMessage: errors.basicDetailsNationalityContested
+                    errorMessage: errors.dateOfBirth
                 }) }}
 
             </div>

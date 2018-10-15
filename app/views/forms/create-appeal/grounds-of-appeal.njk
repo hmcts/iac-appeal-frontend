@@ -22,12 +22,15 @@
         <div class="govuk-grid-row govuk-!-margin-bottom-5">
             <div class="govuk-grid-column-one-half">
 
-                <p>You’ll be able to explain your grounds later.</p>
+                <p>You'll be able to explain your grounds later.</p>
 
                 {{ govukCheckboxes({
                     idPrefix: "grounds-of-appeal",
                     name: "grounds-of-appeal",
                     fieldset: {
+                        attributes: {
+                            id: "grounds-of-appeal"
+                        },
                         legend: {
                             isPageHeading: false
                         }
@@ -37,21 +40,22 @@
                     },
                     items: [
                         {
-                            checked: groundsOfAppeal.refugeeConventionChecked,
+                            checked: data.groundsOfAppeal.includes('refugeeConvention'),
                             value: "refugeeConvention",
                             text: "Removing the appellant from the UK would breach the UK's obligations under the Refugee Convention"
                         },
                         {
-                            checked: groundsOfAppeal.humanitarianProtectionChecked,
+                            checked: data.groundsOfAppeal.includes('humanitarianProtection'),
                             value: "humanitarianProtection",
                             text: "Removing the appellant from the UK would breach the UK's obligations in relation to persons eligible for a grant of humanitarian protection"
                         },
                         {
-                            checked: groundsOfAppeal.humanRightsConventionChecked,
+                            checked: data.groundsOfAppeal.includes('humanRightsConvention'),
                             value: "humanRightsConvention",
                             text: "Removing the appellant from the UK would be unlawful under section 6 of the Human Rights Act 1998 (public authority not to act contrary to Human Rights Convention)"
                         }
-                    ]
+                    ],
+                    errorMessage: errors.checklist
                 }) }}
 
             </div>

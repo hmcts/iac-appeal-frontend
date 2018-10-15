@@ -61,6 +61,7 @@
     "request": "^2.85.0",
     "request-promise": "^4.2.2",
     "serve-favicon": "^2.4.2",
+    "session-file-store": "1.2.0",
     "yarn": "1.9.4"
   },
   "devDependencies": {

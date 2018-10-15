@@ -4,6 +4,8 @@ const juiRedirector = require('../../services/juiRedirector');
 
 module.exports = async(req, res) => {
 
+  console.debug("Controller: " + __filename);
+
   const caseId = req.params.caseId;
   const juiTab = 'buildappeal';
   const storedCase = req.storedCase;
@@ -11,9 +13,9 @@ module.exports = async(req, res) => {
   let values = {
     caseId: caseId,
     appellantName: storedCase.caseDetails.appellantName,
-    groundsOfAppeal: {},
     backUrl: juiLinkBuilder.buildLinkToCase(req, caseId, juiTab),
     dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
+    signOutUrl: juiLinkBuilder.buildLinkToSignOut(req),
     data: {},
     errors: {},
     errorsSummary: [],
@@ -34,14 +36,19 @@ module.exports = async(req, res) => {
         });
 
     if (groundsOfAppeal) {
-      values.groundsOfAppeal.refugeeConventionChecked = groundsOfAppeal.includes('refugeeConvention');
-      values.groundsOfAppeal.humanitarianProtectionChecked = groundsOfAppeal.includes('humanitarianProtection');
-      values.groundsOfAppeal.humanRightsConventionChecked = groundsOfAppeal.includes('humanRightsConvention');
+      values.data.groundsOfAppeal.refugeeConvention = { checked: groundsOfAppeal.includes('refugeeConvention') };
+      values.data.groundsOfAppeal.humanitarianProtection = { checked: groundsOfAppeal.includes('humanitarianProtection') }
+      values.data.groundsOfAppeal.humanRightsConvention = { checked: groundsOfAppeal.includes('humanRightsConvention') };
     }
   }
 
   if (req.method == 'POST') {
     const post = req.postData || {};
+
+    console.debug("=================");
+    console.debug("POST:");
+    console.debug(post);
+    console.debug("=================");
 
     const groundsOfAppeal =
       Array.isArray(post['grounds-of-appeal']) ? post['grounds-of-appeal'] : post['grounds-of-appeal'] ? [post['grounds-of-appeal']] : [];
@@ -60,6 +67,11 @@ module.exports = async(req, res) => {
     juiRedirector.redirectToCase(req, res, caseId, juiTab);
     return;
   }
+
+  console.debug("=================");
+  console.debug("VALUES:");
+  console.debug(values);
+  console.debug("=================");
 
   res.render(
     'forms/grounds-of-appeal.njk',

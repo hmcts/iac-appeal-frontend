@@ -2,6 +2,14 @@
   "appInsights": {
     "instrumentationKey": "APPINSIGHTS_INSTRUMENTATIONKEY"
   },
+  "auth": {
+    "s2sEndpoint": "S2S_ENDPOINT"
+  },
+  "cookieNames": {
+    "accessToken": "ACCESS_TOKEN_COOKIE",
+    "userId": "USER_ID_COOKIE"
+  },
+  "sessionSecret": "SESSION_SECRET",
   "iaCaseApiUrl": "IA_CASE_API_URL",
   "ccdDataStoreApiUrl": "CCD_DATA_STORE_API_URL",
   "microservice": "IA_MICROSERVICE",

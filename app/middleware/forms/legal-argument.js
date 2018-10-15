@@ -45,6 +45,8 @@ function buildLegalArgumentFromPost(
 
 module.exports = async(req, res) => {
 
+  console.debug("Controller: " + __filename);
+
   const caseId = req.params.caseId;
   const juiTab = 'buildappeal';
   const storedCase = req.storedCase;
@@ -52,9 +54,9 @@ module.exports = async(req, res) => {
   let values = {
     caseId: caseId,
     appellantName: storedCase.caseDetails.appellantName,
-    legalArgument: {},
     backUrl: juiLinkBuilder.buildLinkToCase(req, caseId, juiTab),
     dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
+    signOutUrl: juiLinkBuilder.buildLinkToSignOut(req),
     data: {},
     errors: {},
     errorsSummary: [],
@@ -74,13 +76,23 @@ module.exports = async(req, res) => {
 
   if (req.method == 'GET') {
     if (storedLegalArgument) {
-      values.legalArgument = storedLegalArgument;
+      values.data.legalArgument = JSON.parse(JSON.stringify(storedLegalArgument));
     }
   }
 
   if (req.method == 'POST') {
-    const post = req.postData || {};
     const exchangedDocuments = req.exchangedDocuments || {};
+    const post = req.postData || {};
+
+    console.debug("=================");
+    console.debug("EXCHANGED DOCUMENTS:");
+    console.debug(exchangedDocuments);
+    console.debug("=================");
+
+    console.debug("=================");
+    console.debug("POST:");
+    console.debug(post);
+    console.debug("=================");
 
     const legalArgument =
       buildLegalArgumentFromPost(
@@ -92,7 +104,7 @@ module.exports = async(req, res) => {
     if (!legalArgument.document) {
       values.errors.legalArgumentDocument = {
         text: 'An appeal argument is required',
-        href: "#legal-argument-document"
+        href: "#legal-argument-fieldset"
       };
 
       values.errorsSummary.push(values.errors.legalArgumentDocument);
@@ -101,7 +113,7 @@ module.exports = async(req, res) => {
     if (!legalArgument.evidence) {
       values.errors.supportingEvidenceDocument = {
         text: 'Supporting evidence is required',
-        href: "#supporting-evidence-document"
+        href: "#supporting-evidence-fieldset"
       };
 
       values.errorsSummary.push(values.errors.supportingEvidenceDocument);
@@ -124,9 +136,14 @@ module.exports = async(req, res) => {
       return;
     }
 
-    values.legalArgument = legalArgument;
-    values.previouslyExchangedDocumentsData = req.previouslyExchangedDocumentsData;
+    values.data.legalArgument = legalArgument;
+    values.data.previouslyExchangedDocumentsData = req.previouslyExchangedDocumentsData;
   }
+
+  console.debug("=================");
+  console.debug("VALUES:");
+  console.debug(values);
+  console.debug("=================");
 
   res.render(
     'forms/legal-argument.njk',

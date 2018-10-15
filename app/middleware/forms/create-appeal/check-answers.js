@@ -5,31 +5,53 @@ const juiRedirector = require('../../../services/juiRedirector');
 
 module.exports = async(req, res) => {
 
-  console.log("Controller: " + __filename);
+  console.debug("Controller: " + __filename);
+
+  console.debug("=================");
+  console.debug("SESSION:");
+  console.debug(req.session);
+  console.debug("=================");
+
+  req.session.createAppeal = req.session.createAppeal || {};
 
   let values = {
-    appeal: {},
-    backUrl: juiLinkBuilder.buildLinkToDashboard(req),
+    backUrl: paths.createAppealOutOfTime,
     dashBoardUrl: juiLinkBuilder.buildLinkToDashboard(req),
+    signOutUrl: juiLinkBuilder.buildLinkToSignOut(req),
     paths: paths,
     data: {},
     errors: {},
     errorsSummary: [],
   };
 
-  // console.log("=================");
-  // console.log(req.auth);
-  // console.log("-----------------");
-  // console.log(req.headers);
-  // console.log("-----------------");
-  // console.log(req.cookies);
-  // console.log("-----------------");
-  // console.log(req.params);
-  // console.log("=================");
+  values.data = {
+    homeOfficeDecision: req.session.createAppeal.homeOfficeDecision || {},
+    basicDetails: req.session.createAppeal.basicDetails || {},
+    nationality: req.session.createAppeal.nationality || {},
+    address: req.session.createAppeal.address || {},
+    appealReason: req.session.createAppeal.appealReason || '',
+    groundsOfAppeal: req.session.createAppeal.groundsOfAppeal || [],
+    newMatters: req.session.createAppeal.newMatters || {},
+    hasOtherAppeals: req.session.createAppeal.hasOtherAppeals || '',
+    otherAppeals: req.session.createAppeal.otherAppeals || {},
+    referenceNumber: req.session.createAppeal.referenceNumber || '',
+    outOfTime: req.session.createAppeal.outOfTime || {}
+  };
 
   if (req.method == 'POST') {
+    const post = req.postData || {};
+
+    console.debug("=================");
+    console.debug("POST:");
+    console.debug(post);
+    console.debug("=================");
 
   }
+
+  console.debug("=================");
+  console.debug("VALUES:");
+  console.debug(values);
+  console.debug("=================");
 
   res.render(
     'forms/create-appeal/check-answers.njk',

@@ -3,6 +3,7 @@
 {% from "button/macro.njk" import govukButton %}
 {% from "checkboxes/macro.njk" import govukCheckboxes %}
 {% from "error-summary/macro.njk" import govukErrorSummary %}
+{% from "fieldset/macro.njk" import govukFieldset %}
 
 {% block content %}
 
@@ -24,13 +25,39 @@
 
                 {{ govukCheckboxes({
                     name: "checklist",
+                    fieldset: {
+                        attributes: {
+                            id: "checklist"
+                        }
+                    },
                     items: [
-                        { text: "My client is at least 18 years old" },
-                        { text: "My client is not currently in detention" },
-                        { text: "My client isn't appealing with other people as part of a family appeal" },
-                        { text: "My client is located in one of these postcodes: HA1, HA2, HA4" },
-                        { text: "My client is presently in the UK" }
-                    ]
+                        {
+                            checked: data.checklist.includes('1'),
+                            value: '1',
+                            text: "My client is at least 18 years old"
+                        },
+                        {
+                            checked: data.checklist.includes('2'),
+                            value: '2',
+                            text: "My client is not currently in detention"
+                        },
+                        {
+                            checked: data.checklist.includes('3'),
+                            value: '3',
+                            text: "My client isn't appealing with other people as part of a family appeal"
+                        },
+                        {
+                            checked: data.checklist.includes('4'),
+                            value: '4',
+                            text: "My client is located in one of these postcodes: HA1, HA2, HA4"
+                        },
+                        {
+                            checked: data.checklist.includes('5'),
+                            value: '5',
+                            text: "My client is presently in the UK"
+                        }
+                    ],
+                    errorMessage: errors.checklist
                 }) }}
 
             </div>

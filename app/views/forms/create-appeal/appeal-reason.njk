@@ -8,6 +8,15 @@
 
     <h1 class="govuk-heading-xl">Why is your client appealing?</h1>
 
+    {% if errors|length %}
+
+        {{ govukErrorSummary({
+            titleText: "There is a problem",
+            errorList: errorsSummary
+        }) }}
+
+    {% endif %}
+
     <form method="post">
 
         <div class="govuk-grid-row govuk-!-margin-bottom-5">
@@ -17,23 +26,23 @@
                     idPrefix: "appeal-reason",
                     name: "appeal-reason",
                     fieldset: {
-                        legend: {
-                            text: "Appeal reason",
-                            isPageHeading: false
+                        attributes: {
+                            id: "appeal-reason"
                         }
                     },
                     items: [
                         {
-                            checked: appealReason.protectionClaimRefusedChecked,
+                            checked: data.appealReason == 'protectionClaimRefused',
                             value: "protectionClaimRefused",
                             text: "My client's protection claim was refused"
                         },
                         {
-                            checked: appealReason.protectionStatusRevokedChecked,
+                            checked: data.appealReason == 'protectionStatusRevoked',
                             value: "protectionStatusRevoked",
                             text: "My client's protection status was revoked"
                         }
-                    ]
+                    ],
+                    errorMessage: errors.appealReason
                 }) }}
 
             </div>

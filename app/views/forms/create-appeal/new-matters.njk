@@ -5,6 +5,7 @@
 {% from "error-summary/macro.njk" import govukErrorSummary %}
 {% from "fieldset/macro.njk" import govukFieldset %}
 {% from "file-upload/macro.njk" import govukFileUpload %}
+{% from "radios/macro.njk" import govukRadios %}
 {% from "textarea/macro.njk" import govukTextarea %}
 
 {% block content %}
@@ -20,18 +21,53 @@
 
     {% endif %}
 
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
+
+        <input name="previouslyExchangedDocumentsData" type="hidden" value="{{ data.previouslyExchangedDocumentsData }}"/>
 
         <div class="govuk-grid-row govuk-!-margin-bottom-5">
             <div class="govuk-grid-column-one-half">
+
+                {{ govukRadios({
+                    classes: "govuk-radios--inline",
+                    name: "has-new-matters",
+                    fieldset: {
+                        attributes: {
+                            id: "has-new-matters"
+                        },
+                        legend: {
+                            text: "Are there any new reasons why your client wishes to remain in the UK or any new grounds on which they should be permitted to stay?",
+                            isPageHeading: false
+                        }
+                    },
+                    items: [
+                        {
+                            checked: data.hasNewMatters == 'yes',
+                            value: "yes",
+                            text: "Yes"
+                        },
+                        {
+                            checked: data.hasNewMatters == 'no',
+                            value: "no",
+                            text: "No"
+                        }
+                    ],
+                    errorMessage: errors.hasNewMatters
+                }) }}
+
+                <p>State any new reasons why your client wishes to remain in the UK or any new grounds on which they should be permitted to stay.</p>
+
+                <p>The Home Office needs to agree that this is a new matter.</p>
+
+                <p>If the Home Office does not agree it should be considered as part of this appeal, the tribunal will not be able to proceed. Your client may
+                    then need to make a new application for a Home Office asylum decision.</p>
 
                 {{ govukCheckboxes({
                     idPrefix: "new-matters",
                     name: "new-matters",
                     fieldset: {
-                        legend: {
-                            text: "New matters (optional)",
-                            isPageHeading: false
+                        attributes: {
+                            id: "new-matters"
                         }
                     },
                     hint: {
@@ -39,72 +75,78 @@
                     },
                     items: [
                         {
-                            checked: newMatters.humanRightsNewChildChecked,
+                            checked: data.newMatters.includes('humanRightsNewChild'),
+                            name: "newMatters-humanRightsNewChild",
                             value: "humanRightsNewChild",
                             text: "Birth of a child"
                         },
                         {
-                            checked: newMatters.humanRightsNewRelationshipChecked,
+                            checked: data.newMatters.includes('humanRightsNewRelationship'),
+                            name: "newMatters-humanRightsNewRelationship",
                             value: "humanRightsNewRelationship",
                             text: "New relationship"
                         },
                         {
-                            checked: newMatters.humanRightsBreachOfFamilyLifeChecked,
+                            checked: data.newMatters.includes('humanRightsBreachOfFamilyLife'),
+                            name: "newMatters-humanRightsBreachOfFamilyLife",
                             value: "humanRightsBreachOfFamilyLife",
                             text: "Removal would disrupt family life"
                         },
                         {
-                            checked: newMatters.humanRightsRefugeeChecked,
+                            checked: data.newMatters.includes('humanRightsRefugee'),
+                            name: "newMatters-humanRightsRefugee",
                             value: "humanRightsRefugee",
                             text: "Appellant now claims to be a refugee"
                         },
                         {
-                            checked: newMatters.humanRightsMarriedBritishCitizenChecked,
+                            checked: data.newMatters.includes('humanRightsMarriedBritishCitizen'),
+                            name: "newMatters-humanRightsMarriedBritishCitizen",
                             value: "humanRightsMarriedBritishCitizen",
                             text: "New marriage"
                         },
                         {
-                            checked: newMatters.otherChecked,
+                            checked: data.newMatters.includes('other'),
+                            name: "newMatters-other",
                             value: "other",
                             text: "Other"
                         }
-                    ]
+                    ],
+                    errorMessage: errors.newMatters
                 }) }}
 
                 {% call govukFieldset({
+                    attributes: {
+                        id: "other-fieldset"
+                    },
                     legend: {
                         text: "Other",
-                        classes: "govuk-fieldset__legend--m",
+                        classes: "govuk-fieldset__legend--s",
                         isPageHeading: false
                     }
                 }) %}
 
-                    <p>The Home Office needs to agree that this is a new matter. If the Home Office does not agree it should be considered as part of the
-                        appeal, the tribunal will not be able to proceed. Your client may then need to make a new application for a Home Office asylum decision.
-                        (optional)</p>
-
                     {{ govukTextarea({
-                        name: "new-matters-other",
-                        id: "new-matters-other",
+                        name: "other",
+                        id: "other",
                         hint: {
                             text: "You can write an answer or upload a document."
                         },
-                        value: newMatters.other,
-                        errorMessage: errors.newMattersOther
+                        value: data.other,
+                        errorMessage: errors.other
                     }) }}
 
-                    {% if newMatters.other.document %}
-                        <p><a href="{{ newMatters.other.document.document_binary_url }}"
-                              target="_blank">{{ newMatters.other.document.document_filename }}</a></p>
+                    {% if data.otherDocument %}
+                        <p><a href="{{ data.otherDocument.document_binary_url }}"
+                              target="_blank">{{ data.otherDocument.document_filename }}</a></p>
                     {% endif %}
 
                     {{ govukFileUpload({
-                        id: "new-matters-other-document",
-                        name: "new-matters-other-document",
+                        id: "other-document",
+                        name: "other-document",
                         label: {
                             text: "Upload a file"
                         },
-                        errorMessage: errors.newMattersOtherDocument
+                        errorMessage: errors.otherDocument
                     }) }}
 
                 {% endcall %}
@@ -115,5 +157,7 @@
         {{ govukButton({ text: "Continue" }) }}
 
     </form>
+
+    {% include "includes/upload-advice.njk" %}
 
 {% endblock %}

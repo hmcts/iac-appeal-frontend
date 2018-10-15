@@ -2,13 +2,20 @@ const fs = require('fs');
 const documentUploader = require('../services/api/documentUploader');
 
 const exchangeableFileFieldNames = [
+  'explanation-document',
   'legal-argument-document',
+  'other-document',
   'supporting-evidence-document',
 ];
 
 module.exports = async(req, res, next) => {
 
   try {
+
+    // console.debug("=================");
+    // console.debug("FILE DATA:");
+    // console.debug(req.fileData);
+    // console.debug("=================");
 
     if (Object.keys(req.fileData).length == 0) {
       return next();

@@ -28,8 +28,8 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("Home Office reference number", homeOfficeDecision.referenceNumber, paths.createAppealHomeOfficeReference) }}
-                        {{ answer("Decision date on the letter", homeOfficeDecision.decisionDate, paths.createAppealHomeOfficeReference) }}
+                        {{ answer("Home Office reference number", data.homeOfficeDecision.referenceNumber, paths.createAppealHomeOfficeDecision) }}
+                        {{ answer("Decision date on the letter", data.homeOfficeDecision.decisionDate, paths.createAppealHomeOfficeDecision) }}
 
                     </dl>
 
@@ -41,12 +41,23 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("Title", basicDetails.title, paths.createAppealBasicDetails) }}
-                        {{ answer("Given names", basicDetails.givenNames, paths.createAppealBasicDetails) }}
-                        {{ answer("Last name", basicDetails.lastName, paths.createAppealBasicDetails) }}
-                        {{ answer("Date of birth", basicDetails.dateOfBirth, paths.createAppealBasicDetails) }}
-                        {{ answer("Nationality", basicDetails.nationality, paths.createAppealBasicDetails) }}
-                        {{ answer("My client's nationality is contested", basicDetails.nationalityContested, paths.createAppealBasicDetails) }}
+                        {{ answer("Title", data.basicDetails.title, paths.createAppealBasicDetails) }}
+                        {{ answer("Given names", data.basicDetails.givenNames, paths.createAppealBasicDetails) }}
+                        {{ answer("Last name", data.basicDetails.lastName, paths.createAppealBasicDetails) }}
+                        {{ answer("Date of birth", data.basicDetails.dateOfBirth, paths.createAppealBasicDetails) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Nationality</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Nationality", data.nationality.nationality, paths.createAppealNationality) }}
+                        {{ answer("My client's nationality is contested", data.nationality.formattedNationalityContested, paths.createAppealNationality) }}
 
                     </dl>
 
@@ -58,8 +69,8 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("My client has a fixed address?", address.fixedAddress, paths.createAppealAddress) }}
-                        {{ answer("Address", address.formattedAddress, paths.createAppealAddress) }}
+                        {{ answer("My client has a fixed address?", data.address.formattedHasFixedAddress, paths.createAppealAddress) }}
+                        {{ answer("Address", data.address.formattedAddress, paths.createAppealAddress) }}
 
                     </dl>
 
@@ -71,7 +82,7 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("Appeal reason", appealReason.value, paths.createAppealAppealReason) }}
+                        {{ answer("Appeal reason", data.appealReason.formattedAppealReason, paths.createAppealAppealReason) }}
 
                     </dl>
 
@@ -83,7 +94,7 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("Grounds", groundsOfAppeal.values, paths.createAppealGroundsOfAppeal) }}
+                        {{ answer("Grounds", data.groundsOfAppeal.formattedGroundsOfAppeal, paths.createAppealGroundsOfAppeal) }}
 
                     </dl>
 
@@ -95,9 +106,9 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("New matters", newMatters.values, paths.createAppealNewMatters) }}
-                        {{ answer("Other", newMatters.other, paths.createAppealNewMatters) }}
-                        {{ answer("Other document", newMatters.other.document, paths.createAppealNewMatters) }}
+                        {{ answer("New matters", data.newMatters.formattedNewMatters, paths.createAppealNewMatters) }}
+                        {{ answer("Other", data.newMatters.other, paths.createAppealNewMatters) }}
+                        {{ answer("Other document", data.newMatters.otherDocument.document_filename, paths.createAppealNewMatters) }}
 
                     </dl>
 
@@ -109,8 +120,8 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("Other appeals?", otherAppealsQuestion.value, paths.createAppealOtherAppealsQuestion) }}
-                        {{ answer("Appeal number", otherAppealsAnswer[0].value, paths.createAppealOtherAppealsAnswer) }}
+                        {{ answer("Other appeals?", data.hasOtherAppeals.formattedHasOtherAppeals, paths.createAppealHasOtherAppeals) }}
+                        {{ answer("Appeal number", data.otherAppeals.appealNumber, paths.createAppealOtherAppeals) }}
 
                     </dl>
 
@@ -122,7 +133,20 @@
 
                     <dl class="app-check-your-answers app-check-your-answers--short">
 
-                        {{ answer("Reference number", referenceNumber, paths.createAppealReferenceNumber) }}
+                        {{ answer("Reference number", data.referenceNumber, paths.createAppealReferenceNumber) }}
+
+                    </dl>
+
+                </section>
+
+                <section class="govuk-!-margin-bottom-8">
+
+                    <h2 class="govuk-heading-m">Out of time</h2>
+
+                    <dl class="app-check-your-answers app-check-your-answers--short">
+
+                        {{ answer("Explanation", data.outOfTime.explanation, paths.createAppealOutOfTime) }}
+                        {{ answer("Explanation document", data.outOfTime.explanationDocument.document_filename, paths.createAppealOutOfTime) }}
 
                     </dl>
 

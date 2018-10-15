@@ -23,15 +23,6 @@
         <div class="govuk-grid-row govuk-!-margin-bottom-5">
             <div class="govuk-grid-column-one-half">
 
-                {% if errors|length %}
-
-                    {{ govukErrorSummary({
-                        titleText: "There is a problem",
-                        errorList: errorsSummary
-                    }) }}
-
-                {% endif %}
-
                 <p>Look for the reference number and date on the Home Office decision letter.</p>
 
                 <div class="govuk-!-margin-bottom-8">
@@ -39,17 +30,17 @@
                 </div>
 
                 {{ govukInput({
-                    id: "home-office-reference-number",
-                    name: "home-office-reference-number",
+                    id: "reference-number",
+                    name: "reference-number",
                     label: { text: "Home Office reference number" },
                     classes: "govuk-input--width-20",
-                    value: homeOfficeDecision.referenceNumber,
-                    errorMessage: errors.homeOfficeReferenceNumber
+                    value: data.referenceNumber,
+                    errorMessage: errors.referenceNumber
                 }) }}
 
                 {{ govukDateInput({
-                    id: "home-office-decision-date",
-                    name: "home-office-decision-date",
+                    id: "decision-date",
+                    name: "decision-date",
                     fieldset: {
                         legend: {
                             text: "Decision date on the letter",
@@ -57,11 +48,11 @@
                         }
                     },
                     items: [
-                        { name: "day", value: homeOfficeDecision.decisionDateDay },
-                        { name: "month", value: homeOfficeDecision.decisionDateMonth },
-                        { name: "year", value: homeOfficeDecision.decisionDateYear }
+                        { name: "day", value: data.decisionDateDay },
+                        { name: "month", value: data.decisionDateMonth },
+                        { name: "year", value: data.decisionDateYear }
                     ],
-                    errorMessage: errors.homeOfficeDecisionDate
+                    errorMessage: errors.decisionDate
                 }) }}
 
             </div>

@@ -21,7 +21,7 @@
 
     <form method="post" enctype="multipart/form-data">
 
-        <input name="previouslyExchangedDocumentsData" type="hidden" value="{{ previouslyExchangedDocumentsData }}"/>
+        <input name="previouslyExchangedDocumentsData" type="hidden" value="{{ data.previouslyExchangedDocumentsData }}"/>
 
         <section class="govuk-!-margin-bottom-8">
 
@@ -48,15 +48,14 @@
                 <div class="govuk-grid-column-one-half">
 
                     {% call govukFieldset({
-                        legend: {
-                            classes: "govuk-fieldset__legend--s",
-                            isPageHeading: false
+                        attributes: {
+                            id: "legal-argument-fieldset"
                         }
                     }) %}
 
-                        {% if legalArgument.document %}
-                            <p><a href="{{ legalArgument.document.document_binary_url }}"
-                                  target="_blank">{{ legalArgument.document.document_filename }}</a></p>
+                        {% if data.legalArgument.document %}
+                            <p><a href="{{ data.legalArgument.document.document_binary_url }}"
+                                  target="_blank">{{ data.legalArgument.document.document_filename }}</a></p>
                         {% endif %}
 
                         {{ govukFileUpload({
@@ -74,7 +73,7 @@
                             label: {
                                 text: "Describe the document (optional)"
                             },
-                            value: legalArgument.description,
+                            value: data.legalArgument.description,
                             errorMessage: errors.legalArgumentDescription
                         }) }}
 
@@ -93,6 +92,9 @@
                 <div class="govuk-grid-column-one-half">
 
                     {% call govukFieldset({
+                        attributes: {
+                            id: "supporting-evidence-fieldset"
+                        }
                         legend: {
                             text: "Evidence",
                             classes: "govuk-fieldset__legend--s",
@@ -100,9 +102,9 @@
                         }
                     }) %}
 
-                        {% if legalArgument.evidence.documents[0] %}
-                            <p><a href="{{ legalArgument.evidence.documents[0].value.document.document_binary_url }}"
-                                  target="_blank">{{ legalArgument.evidence.documents[0].value.document.document_filename }}</a></p>
+                        {% if data.legalArgument.evidence.documents[0] %}
+                            <p><a href="{{ data.legalArgument.evidence.documents[0].value.document.document_binary_url }}"
+                                  target="_blank">{{ data.legalArgument.evidence.documents[0].value.document.document_filename }}</a></p>
                         {% endif %}
 
                         {{ govukFileUpload({
