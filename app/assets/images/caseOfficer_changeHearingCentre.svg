@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="574px" height="108px" viewBox="0 0 574 108" style="enable-background:new 0 0 574 108;" xml:space="preserve">
+	 width="937px" height="108px" viewBox="0 0 937 108" style="enable-background:new 0 0 937 108;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#F3F2F1;}
 	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
@@ -38,7 +38,13 @@
 	.st32{font-family:'Arial-BoldMT';}
 	.st33{font-size:24px;}
 </style>
-<rect id="Rectangle-Copy-21_16_" class="st28" width="574" height="108"/>
-<rect x="28" y="44.5" class="st31" width="527.2" height="64.4"/>
-<text transform="matrix(1 0 0 1 28.0201 61.672)" class="st4 st32 st33">The notification to the respondent has failed</text>
+<rect id="Rectangle-Copy-21_10_" class="st1" width="937" height="108"/>
+<rect id="Rectangle-Copy-22_9_" class="st20" width="15" height="108"/>
+<g id="Group-2-Copy-2_3_" transform="translate(43.000000, 33.000000)">
+	<circle id="Oval_4_" class="st21" cx="19" cy="19" r="19"/>
+	<line id="Line-3_3_" class="st22" x1="19" y1="12" x2="19" y2="22"/>
+	<circle class="st23" cx="19" cy="29" r="3"/>
+</g>
+<rect x="109.2" y="43.2" class="st31" width="761.1" height="28.4"/>
+<text transform="matrix(1 0 0 1 109.1993 60.3351)" class="st32 st33">You must now change the designated hearing centre</text>
 </svg>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="574px" height="108px" viewBox="0 0 574 108" style="enable-background:new 0 0 574 108;" xml:space="preserve">
+	 width="940px" height="111px" viewBox="0 0 940 111" style="enable-background:new 0 0 940 111;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#F3F2F1;}
 	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
@@ -37,8 +37,12 @@
 	.st31{fill:none;}
 	.st32{font-family:'Arial-BoldMT';}
 	.st33{font-size:24px;}
+	.st34{font-family:'ArialMT';}
+	.st35{font-size:18px;}
 </style>
-<rect id="Rectangle-Copy-21_16_" class="st28" width="574" height="108"/>
-<rect x="28" y="44.5" class="st31" width="527.2" height="64.4"/>
-<text transform="matrix(1 0 0 1 28.0201 61.672)" class="st4 st32 st33">The notification to the respondent has failed</text>
+<path id="Path" class="st25" d="M940,0v111H0V0H940z M937,3H3v105h934V3z"/>
+<rect x="21.3" y="28.7" class="st31" width="542" height="64.4"/>
+<text transform="matrix(1 0 0 1 21.2907 45.8984)" class="st32 st33">This appeal has been submitted out of time</text>
+<rect x="21.7" y="68.9" class="st31" width="992.3" height="64.4"/>
+<text transform="matrix(1 0 0 1 21.7329 81.8247)" class="st34 st35">You must review the appeal in the documents tab and decide whether it can proceed</text>
 </svg>
