@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="616px" height="158px" viewBox="0 0 616 158" style="enable-background:new 0 0 616 158;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
-	.st1{fill:none;stroke:#008242;stroke-width:3;stroke-miterlimit:10;}
-	.st2{fill:#008242;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;}
-	.st5{fill:#F3F2F1;}
+	.st0{fill:#F3F2F1;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
+	.st2{fill:none;stroke:#008242;stroke-width:3;stroke-miterlimit:10;}
+	.st3{fill:#008242;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;}
 	.st6{fill:#1D70B8;}
 	.st7{fill:#F8F8F8;}
 	.st8{fill:#FFFFFF;stroke:#979797;stroke-width:3;}
@@ -31,14 +31,14 @@
 	.st25{fill:#B10E1E;}
 	.st26{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;}
 	.st27{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;stroke:#979797;}
-	.st28{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
-	.st29{enable-background:new    ;}
-	.st30{font-family:'Arial-BoldMT';}
-	.st31{font-size:40px;}
-	.st32{letter-spacing:-2;}
-	.st33{fill-rule:evenodd;clip-rule:evenodd;fill:#D0021B;}
+	.st28{fill-rule:evenodd;clip-rule:evenodd;fill:#D0021B;}
+	.st29{fill:none;stroke:#DF0A15;stroke-miterlimit:10;}
+	.st30{fill:#F7931E;}
+	.st31{fill:none;}
+	.st32{font-family:'Arial-BoldMT';}
+	.st33{font-size:40px;}
 </style>
 <rect id="Rectangle-3_1_" class="st27" width="616" height="158"/>
-<rect y="34.4" class="st28" width="617" height="83.3"/>
-<text transform="matrix(1 0 0 1 61.0486 68.679)" class="st29"><tspan x="0" y="0" class="st3 st30 st31 st32">Y</tspan><tspan x="23.7" y="0" class="st3 st30 st31">our application has been  </tspan><tspan x="44.1" y="48" class="st3 st30 st31">submitted out of time </tspan></text>
+<rect x="14.9" y="40.1" class="st31" width="586.7" height="104.9"/>
+<text transform="matrix(1 0 0 1 59.2827 68.7444)"><tspan x="0" y="0" class="st4 st32 st33">Your application has been </tspan><tspan x="45.6" y="48" class="st4 st32 st33">submitted out of time</tspan></text>
 </svg>

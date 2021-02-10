@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="940px" height="111px" viewBox="0 0 940 111" style="enable-background:new 0 0 940 111;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
-	.st1{fill:none;stroke:#008242;stroke-width:3;stroke-miterlimit:10;}
-	.st2{fill:#008242;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;}
-	.st5{fill:#F3F2F1;}
+	.st0{fill:#F3F2F1;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
+	.st2{fill:none;stroke:#008242;stroke-width:3;stroke-miterlimit:10;}
+	.st3{fill:#008242;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;}
 	.st6{fill:#1D70B8;}
 	.st7{fill:#F8F8F8;}
 	.st8{fill:#FFFFFF;stroke:#979797;stroke-width:3;}
@@ -29,20 +29,20 @@
 	.st23{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
 	.st24{fill-rule:evenodd;clip-rule:evenodd;fill:#00703C;}
 	.st25{fill:#B10E1E;}
-	.st26{fill-rule:evenodd;clip-rule:evenodd;fill:none;}
-	.st27{font-family:'Arial-BoldMT';}
-	.st28{font-size:24px;}
-	.st29{enable-background:new    ;}
-	.st30{font-family:'ArialMT';}
-	.st31{font-size:18px;}
-	.st32{letter-spacing:-1;}
-	.st33{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;}
-	.st34{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;stroke:#979797;}
-	.st35{fill-rule:evenodd;clip-rule:evenodd;fill:#D0021B;}
+	.st26{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;}
+	.st27{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;stroke:#979797;}
+	.st28{fill-rule:evenodd;clip-rule:evenodd;fill:#D0021B;}
+	.st29{fill:none;stroke:#DF0A15;stroke-miterlimit:10;}
+	.st30{fill:#F7931E;}
+	.st31{fill:none;}
+	.st32{font-family:'Arial-BoldMT';}
+	.st33{font-size:24px;}
+	.st34{font-family:'ArialMT';}
+	.st35{font-size:18px;}
 </style>
 <path id="Path" class="st25" d="M940,0v111H0V0H940z M937,3H3v105h934V3z"/>
-<rect x="21.5" y="25.1" class="st26" width="502.3" height="25.7"/>
-<text transform="matrix(1 0 0 1 21.4999 45.6875)" class="st27 st28">This appeal has been submitted out of time</text>
-<rect x="21.5" y="66.2" class="st26" width="760.2" height="19.3"/>
-<text transform="matrix(1 0 0 1 21.4999 81.6455)" class="st29"><tspan x="0" y="0" class="st30 st31 st32">Y</tspan><tspan x="11" y="0" class="st30 st31">ou must review the appeal in the documents tab and decide whether it can proceed</tspan></text>
+<rect x="21.3" y="28.7" class="st31" width="542" height="64.4"/>
+<text transform="matrix(1 0 0 1 21.2907 45.8984)" class="st32 st33">This appeal has been submitted out of time</text>
+<rect x="21.7" y="68.9" class="st31" width="992.3" height="64.4"/>
+<text transform="matrix(1 0 0 1 21.7329 81.8247)" class="st34 st35">You must review the appeal in the documents tab and decide whether it can proceed</text>
 </svg>

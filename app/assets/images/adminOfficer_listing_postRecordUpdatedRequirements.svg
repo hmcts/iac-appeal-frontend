@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 23.0.6, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!-- Generator: Adobe Illustrator 25.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="937px" height="108px" viewBox="0 0 937 108" style="enable-background:new 0 0 937 108;" xml:space="preserve">
 <style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
-	.st1{fill:none;stroke:#008242;stroke-width:3;stroke-miterlimit:10;}
-	.st2{fill:#008242;}
-	.st3{fill:#FFFFFF;}
-	.st4{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;}
-	.st5{fill:#F3F2F1;}
+	.st0{fill:#F3F2F1;}
+	.st1{fill-rule:evenodd;clip-rule:evenodd;fill:#F3F2F1;}
+	.st2{fill:none;stroke:#008242;stroke-width:3;stroke-miterlimit:10;}
+	.st3{fill:#008242;}
+	.st4{fill:#FFFFFF;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-miterlimit:10;}
 	.st6{fill:#1D70B8;}
 	.st7{fill:#F8F8F8;}
 	.st8{fill:#FFFFFF;stroke:#979797;stroke-width:3;}
@@ -32,17 +32,19 @@
 	.st26{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;}
 	.st27{fill-rule:evenodd;clip-rule:evenodd;fill:#B10E1E;stroke:#979797;}
 	.st28{fill-rule:evenodd;clip-rule:evenodd;fill:#D0021B;}
-	.st29{fill:none;}
-	.st30{font-family:'Arial-BoldMT';}
-	.st31{font-size:24px;}
+	.st29{fill:none;stroke:#DF0A15;stroke-miterlimit:10;}
+	.st30{fill:#F7931E;}
+	.st31{fill:none;}
+	.st32{font-family:'Arial-BoldMT';}
+	.st33{font-size:24px;}
 </style>
-<rect x="15" class="st0" width="922" height="108"/>
-<rect x="105.4" y="43.8" class="st29" width="618.9" height="20.3"/>
-<text transform="matrix(1 0 0 1 105.4423 61.0109)" class="st30 st31">Update the case to reflect new hearing requirements</text>
+<rect x="15" class="st1" width="922" height="108"/>
 <rect class="st20" width="15" height="108"/>
 <g id="Group-2-Copy-2_6_" transform="translate(43.000000, 33.000000)">
 	<circle id="Oval_7_" class="st21" cx="19" cy="21" r="19"/>
 	<line id="Line-3_6_" class="st22" x1="19" y1="14" x2="19" y2="24"/>
 	<circle class="st23" cx="19" cy="31" r="3"/>
 </g>
+<rect x="105.3" y="44.3" class="st31" width="757.8" height="29.1"/>
+<text transform="matrix(1 0 0 1 105.3085 61.4796)" class="st32 st33">Update the case to reflect new hearing requirements</text>
 </svg>
